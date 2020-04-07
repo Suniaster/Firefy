@@ -1,0 +1,63 @@
+.player-container {
+    width: 480px;
+    height: 360px;
+    border: 1px solid #454545;
+}
+
+.control-container {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-container input {
+    color: #7A7A7A;
+    width: 480px; 
+    background-color: black;
+    height: 47px;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    border: 1px solid #454545;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+.control-container input::placeholder {
+    font-style: italic;
+}
+
+.button-container {
+    width: 480px; 
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.button-container button {
+    display:block;
+    line-height: 50%;
+    background-color: #454545;
+    height: 3rem;
+    padding: 0 0.5rem 0 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #B6B6B6;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+
+.button-container button:hover {
+    background-color: #303030;
+}

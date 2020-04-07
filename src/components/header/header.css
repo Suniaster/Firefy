@@ -1,0 +1,57 @@
+.header-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 4rem;
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+.header-container button {
+    display:block;
+    line-height: 50%;
+    background-color: #B6B6B6;
+    height: 2rem;
+    width: 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.header-container button:hover {
+    background-color: #ffffff;
+}
+
+.header-container .menu svg {
+    font-size: 1rem;
+}
+
+.header-container .company {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    max-height: 4rem;
+    width: 100%;
+    color: #B6B6B6;
+}
+
+
+.header-container .company span{
+    margin-left: 0.3rem;
+    font-size: 1.2rem;
+} 
+
+.header-container .company img{
+    max-height: 3rem;
+    margin-right: 0.3rem;
+} 
+
+
