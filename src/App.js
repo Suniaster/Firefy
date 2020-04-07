@@ -35,7 +35,7 @@ export default class App extends Component {
     // subscribe state change
     this.player.subscribeToStateChange(this.handleStateChange.bind(this));
 
-    this.socket = io.connect("https://firefy-back.herokuapp.com/")
+    this.socket = io.connect(process.env.SERVER_HOST || "https://localhost:2000")
 
     this.socket.on("sync", (serverVideoInfo)=>{
       this.syncPlayerWithVideoInfo(serverVideoInfo)
