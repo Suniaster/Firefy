@@ -20,7 +20,8 @@ export default class Room extends Component {
 
     this.state = {
       source: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
-      inputText: ''
+      inputText: '',
+      isHost: false,
     };
     this.play = this.play.bind(this);
     this.pause = this.pause.bind(this);
@@ -46,6 +47,10 @@ export default class Room extends Component {
     this.socket.on('getHostInfo', (id)=>{
       this.socket.emit("sendInfoServer", this.videoInfo(), id)
     
+    })
+
+    this.socket.on("ureHost", ()=>{
+      this.setState({isHost: true})
     })
   }
 
@@ -184,6 +189,7 @@ export default class Room extends Component {
                 Sincronizar
                 </button>
             </div>
+            {this.state.isHost && <div className="host_div">Você é o host</div>}
         </div>
       </div>
     );

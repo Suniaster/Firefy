@@ -63,3 +63,10 @@
 .button-container button:hover {
     background-color: #303030;
 }
+
+.host_div{
+    margin-top: 1rem;
+    padding: 0.2rem 1rem 0.2rem 1rem;
+    color: #b6b6b6;
+    background-color: #000000;
+}
