@@ -19,7 +19,7 @@ export default class Room extends Component {
     super(props, context);
 
     this.state = {
-      source: 'http://media.w3.org/2010/05/video/movie_300.webm',
+      source: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
       inputText: ''
     };
     this.play = this.play.bind(this);
