@@ -4,7 +4,7 @@ import { FaBars } from 'react-icons/fa'
 
 import Navbar from '../navbar'
 
-import Logo from '../../assets/logo_grey.svg'
+import Logo from '../../assets/logo_white.svg'
 
 export default function Header() {
 
