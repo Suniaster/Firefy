@@ -15,6 +15,7 @@
     padding: 0.5rem 2.5rem 0.5rem 2.5rem;
     background-color: #B6B6B6;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 .item:hover {

@@ -1,11 +1,12 @@
 .player-container {
-    width: 480px;
-    height: 360px;
+    margin: 4rem auto 1rem auto;
+    max-width: 720px;
+    max-height: auto;
     border: 1px solid #454545;
 }
 
 .control-container {
-    margin-top: 4rem;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,10 +15,10 @@
 
 .control-container input {
     color: #7A7A7A;
-    width: 480px; 
+    width: 100%;
+    max-width: 480px; 
     background-color: black;
     height: 47px;
-    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +34,8 @@
 }
 
 .button-container {
-    width: 480px; 
+    width: 100%;
+    max-width: 480px; 
     margin-top: 1rem;
     display: flex;
     flex-direction: row;

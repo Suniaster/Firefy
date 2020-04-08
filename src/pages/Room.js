@@ -160,16 +160,17 @@ export default class Room extends Component {
     return (
         <div className="room-container">
         <Header/>
-        <div className="control-container">
             <div className="player-container">
             <Player
                 ref={player => {
                     this.player = player;
                 }}
                 autoPlay
-                ><source src={this.state.source} />
-                </Player>
+                >
+                <source src={this.state.source} />
+            </Player>
             </div>
+        <div className="control-container">
 
             <input type="text" placeholder="URL" value={this.state.inputText} onChange={(e)=>this.setState({inputText: e.target.value})} />
 
