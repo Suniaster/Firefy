@@ -37,7 +37,7 @@ export default class Room extends Component {
     // subscribe state change
     this.player.subscribeToStateChange(this.handleStateChange.bind(this));
 
-    this.socket = io.connect(process.env.SERVER_HOST || "http://localhost:2000/")
+    this.socket = io.connect("https://firefy-back.herokuapp.com/")
 
     this.socket.on("sync", (serverVideoInfo)=>{
       this.syncPlayerWithVideoInfo(serverVideoInfo)
