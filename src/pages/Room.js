@@ -48,6 +48,10 @@ export default class Room extends Component {
       this.socket.emit("sendInfoServer", this.videoInfo(), id)
     
     })
+
+    this.socket.on("ureHost", ()=>{
+      this.setState({isHost: true})
+    })
   }
 
   componentDidUpdate(prevProps, prevState){
