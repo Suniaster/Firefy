@@ -37,7 +37,7 @@ export default class Room extends Component {
     // subscribe state change
     this.player.subscribeToStateChange(this.handleStateChange.bind(this));
 
-    this.socket = io.connect(process.env.SERVER_HOST || "https://localhost:2000")
+    this.socket = io.connect(process.env.SERVER_HOST || "http://localhost:2000/")
 
     this.socket.on("sync", (serverVideoInfo)=>{
       this.syncPlayerWithVideoInfo(serverVideoInfo)
@@ -152,6 +152,10 @@ export default class Room extends Component {
     this.player.load();
   }
 
+  tryToChangeSource(name){
+    this.socket.emit('changeSource', name)
+  }
+
   render(){
     return (
         <div className="room-container">
@@ -171,8 +175,7 @@ export default class Room extends Component {
 
             <div className="button-container">
                 <button onClick={()=>{
-                    this.changeSource(this.state.inputText)
-                    this.socket.emit("changeSource", this.videoInfo())
+                    this.tryToChangeSource(this.state.inputText)
                 }}>
                 Trocar vídeo
                 </button>
