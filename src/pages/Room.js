@@ -6,6 +6,7 @@ import { Player } from 'video-react';
 import './room.css'
 
 import io from 'socket.io-client'
+import Chat from '../components/Chat';
 
 /**
  * videoInfo:
@@ -32,13 +33,16 @@ export default class Room extends Component {
     this.changeVolume = this.changeVolume.bind(this);
     this.setMuted = this.setMuted.bind(this);
 
+    this.hostName = "http://localhost:2000"
+    this.roomName = "/room"
+    // "https://firefy-back.herokuapp.com/"
   }
 
   componentDidMount(){
     // subscribe state change
     this.player.subscribeToStateChange(this.handleStateChange.bind(this));
 
-    this.socket = io.connect("https://firefy-back.herokuapp.com/")
+    this.socket = io.connect(this.hostName + this.roomName)
 
     this.socket.on("sync", (serverVideoInfo)=>{
       this.syncPlayerWithVideoInfo(serverVideoInfo)
@@ -189,7 +193,12 @@ export default class Room extends Component {
                 Sincronizar
                 </button>
             </div>
-            {this.state.isHost && <div className="host_div">Você é o host</div>}
+            {this.state.isHost && <div className="host_div">Você é o host</div>}                
+            <Chat
+              roomName={this.roomName}
+              hostName={this.hostName}
+            />
+        
         </div>
       </div>
     );
