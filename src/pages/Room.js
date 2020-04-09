@@ -5,7 +5,7 @@ import './room.css'
 
 import io from 'socket.io-client'
 import Chat from '../components/Chat';
-import DefaultPlayer from '../components/players/DefaultPlayer';
+import Player from '../components/players/Player';
 
 /**
  * videoInfo:
@@ -18,18 +18,24 @@ export default class Room extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.hostName = "https://firefy-back.herokuapp.com"
+    this.hostName = "tps://firefy-back.herokuapp.com"
+    // this.hostName = "http://localhost:2000"
     this.roomName = "/room"
 
     this.state = {
-      socket: undefined
+      socket: undefined,
+      isHost: false
     }
-    // "https://firefy-back.herokuapp.com/"
   }
 
   componentDidMount(){
+    let socket = io.connect(this.hostName + this.roomName)
     this.setState({
-      socket: io.connect(this.hostName + this.roomName)
+      socket: socket
+    })
+
+    socket.on("ureHost", ()=>{
+      this.setState({isHost: true})
     })
   }
 
@@ -38,8 +44,9 @@ export default class Room extends Component {
     return (
       <div className="room-container">
         <Header/>
-        
-        {(this.state.socket!==undefined) && <DefaultPlayer socket={this.state.socket} />}
+
+        {(this.state.socket!==undefined) && <Player socket={this.state.socket} />}
+        {this.state.isHost && <div className="host_div">Você é o host</div>}
           <Chat
             roomName={this.roomName}
             hostName={this.hostName}
