@@ -18,7 +18,7 @@ export default class Room extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.hostName = "tps://firefy-back.herokuapp.com"
+    this.hostName = "https://firefy-back.herokuapp.com"
     // this.hostName = "http://localhost:2000"
     this.roomName = "/room"
 
