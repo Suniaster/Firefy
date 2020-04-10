@@ -19,18 +19,23 @@ export default class Player extends Component{
     }
 
     componentDidMount(){
-        this.socket.on("sync", (serverVideoInfo)=>{
-            this.syncPlayerWithVideoInfo(serverVideoInfo)
-        })
-    
-        this.socket.on('getHostInfo', (id)=>{
-            this.socket.emit("sendInfoServer", this.videoInfo(), id)
-        })
+        this.socket.on("sync", this.__syncPlayerWithVideoInfo)
+        this.socket.on('getHostInfo', this.__getHostInfo)
 
         this.socket.emit('getServerVideoInfo')
     }
 
-    syncPlayerWithVideoInfo(videoInfo){
+    componentWillUnmount(){
+        this.socket.off('sync', this.__syncPlayerWithVideoInfo)
+        this.socket.off('getHostInfo', this.__getHostInfo)
+    }
+
+
+    __getHostInfo = (id) =>{
+        this.socket.emit("sendInfoServer", this.videoInfo(), id)
+    }
+
+    __syncPlayerWithVideoInfo = (videoInfo)=> {
         const currentTime = this.player.getCurrentTime()
         console.log(videoInfo)
         if(this.state.source !== videoInfo.source){

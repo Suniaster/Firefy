@@ -25,44 +25,35 @@ export default class AnimePlayer extends Component{
           this.changeVolume = this.changeVolume.bind(this);
           this.setMuted = this.setMuted.bind(this);
       
+          this.acceptedLagTime = 0.8
     }
 
     componentDidMount(){
         // subscribe state change
         this.player.subscribeToStateChange(this.handleStateChange.bind(this));
     
-        this.socket.on("sync", (serverVideoInfo)=>{
-          this.syncPlayerWithVideoInfo(serverVideoInfo)
-        })
-    
-        this.socket.on('getHostInfo', (id)=>{
-          this.socket.emit("sendInfoServer", this.videoInfo(), id)
-        
-        })
+        this.socket.on("sync", this.__syncPlayerWithVideoInfo)
+        this.socket.on('getHostInfo', this.__getHostInfo)
 
         this.socket.emit('getServerVideoInfo')
-      }
+    }
     
-      componentDidUpdate(prevProps, prevState){
-        if(prevState.player){
+    __getHostInfo = (id) =>{
+        this.socket.emit("sendInfoServer", this.videoInfo(), id)
+    }
+
+
+    componentWillUnmount(){
+        this.socket.off("sync", this.__syncPlayerWithVideoInfo)
+        this.socket.off('getHostInfo', this.__getHostInfo)
+    }
+
     
-          // Toggle pause button
-          if(this.state.player.paused !== prevState.player.paused){
-            //Player has been paused
-            if(this.state.player.paused){
-              this.socket.emit("playerPaused", this.videoInfo())
-            }
-            //Player has been started
-            else{
-              this.socket.emit("playerStarted", this.videoInfo())
-            }
-          }
-           
-        }
-      }
-    
-      syncPlayerWithVideoInfo(videoInfo){
-        const {currentTime} = this.state.player
+      __syncPlayerWithVideoInfo = (videoInfo) =>{
+          const {player} = this.player.getState()
+          console.log(player)
+
+        const {currentTime} = player
     
         if(this.state.source !== videoInfo.source){
           this.changeSource(videoInfo.source)
@@ -78,10 +69,31 @@ export default class AnimePlayer extends Component{
     
       }
     
+      componentDidUpdate(prevProps, prevState){
+        const {player} = this.player.getState()
+
+        if(prevState.player){
+    
+          // Toggle pause button
+          if(player.paused !== prevState.player.paused){
+            //Player has been paused
+            if(player.paused){
+              this.socket.emit("playerPaused", this.videoInfo())
+            }
+            //Player has been started
+            else{
+              this.socket.emit("playerStarted", this.videoInfo())
+            }
+          }
+           
+        }
+      }
+
       videoInfo(){
+        const {player} = this.player.getState()
         return{
-          paused: this.state.player.paused,
-          time: this.state.player.currentTime,
+          paused: player.paused,
+          time: player.currentTime,
           source: this.state.source,
           defaultPlayer: false
         }

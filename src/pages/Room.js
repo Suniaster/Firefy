@@ -39,7 +39,10 @@ export default class Room extends Component {
       this.setState({isHost: true})
     })
 
-    socket.on('changePlayer', (useDefaultPlayer)=>this.setState({defaultPlayer: useDefaultPlayer}))
+    socket.on('changePlayer', (useDefaultPlayer)=>{
+      if(useDefaultPlayer !== this.state.useDefaultPlayer)
+      this.setState({defaultPlayer: useDefaultPlayer})
+    })
   }
 
 
