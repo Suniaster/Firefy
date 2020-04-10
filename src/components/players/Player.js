@@ -26,6 +26,8 @@ export default class Player extends Component{
         this.socket.on('getHostInfo', (id)=>{
             this.socket.emit("sendInfoServer", this.videoInfo(), id)
         })
+
+        this.socket.emit('getServerVideoInfo')
     }
 
     syncPlayerWithVideoInfo(videoInfo){
@@ -47,16 +49,14 @@ export default class Player extends Component{
         return {
             paused: !this.player.player.isPlaying,
             time: this.player.getCurrentTime(),
-            source: this.state.source
+            source: this.state.source,
+            defaultPlayer: true
         }
     }
 
     tryToChangeSource(name){
-        if(ReactPlayer.canPlay(name))
-            this.socket.emit('changeSource', name)
-        else{
-            console.log("Nao funciona")
-        }
+        console.log(ReactPlayer.canPlay(name))
+        this.socket.emit('changeSource', name, ReactPlayer.canPlay(name))
     }
 
     _handlePlay = () => {
