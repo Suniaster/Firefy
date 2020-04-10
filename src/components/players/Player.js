@@ -35,8 +35,7 @@ export default class Player extends PlayerBase{
         return {
             paused: !this.player.player.isPlaying,
             time: this.player.getCurrentTime(),
-            source: this.state.source,
-            defaultPlayer: true
+            source: this.state.source
         }
     }
 

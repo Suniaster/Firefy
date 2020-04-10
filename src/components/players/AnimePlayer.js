@@ -73,8 +73,7 @@ export default class AnimePlayer extends PlayerBase{
     return{
       paused: player.paused,
       time: player.currentTime,
-      source: this.state.source,
-      defaultPlayer: false
+      source: this.state.source
     }
   }
   
