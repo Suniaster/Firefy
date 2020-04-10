@@ -8,10 +8,7 @@ import Chat from '../components/Chat';
 import Player from '../components/players/Player';
 import AnimePlayer from '../components/players/AnimePlayer'
 import ReactPlayer from 'react-player';
-/**
- * videoInfo:
- */
-
+// import AdSense from 'react-adsense';
 
 export default class Room extends Component {
   acceptedLagTime = 1
@@ -42,6 +39,12 @@ export default class Room extends Component {
     })
     this.socket.on('sync', this.__syncPlayer)
     this.socket.on('getHostInfo', this.__getHostInfo)
+
+    const script = document.createElement('script')
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+    script.async = true;
+    script.setAttribute("data-ad-client","ca-pub-7389308630172766");
+    document.head.appendChild(script)
   }
 
   __syncPlayer = (videoInfo) =>{
@@ -100,7 +103,7 @@ export default class Room extends Component {
             roomName={this.roomName}
             hostName={this.hostName}
           />
-
+        
         </div>
       </div>
     );
