@@ -1,16 +1,12 @@
-import React, { Component } from "react"
+import React from "react"
 import ReactPlayer from 'react-player'
 import '../../pages/room.css'
+import PlayerBase from "../../utils/PlayerBase"
 
 
-
-export default class Player extends Component{
-    acceptedLagTime = 0.8
-
+export default class Player extends PlayerBase{
     constructor(props){
         super(props)
-        this.socket = this.props.socket
-
         this.state = {
             source: 'https://www.youtube.com/watch?v=BkPpgMwPss0',
             playing: false,
@@ -19,25 +15,11 @@ export default class Player extends Component{
     }
 
     componentDidMount(){
-        this.socket.on("sync", this.__syncPlayerWithVideoInfo)
-        this.socket.on('getHostInfo', this.__getHostInfo)
-
         this.socket.emit('getServerVideoInfo')
     }
 
-    componentWillUnmount(){
-        this.socket.off('sync', this.__syncPlayerWithVideoInfo)
-        this.socket.off('getHostInfo', this.__getHostInfo)
-    }
-
-
-    __getHostInfo = (id) =>{
-        this.socket.emit("sendInfoServer", this.videoInfo(), id)
-    }
-
-    __syncPlayerWithVideoInfo = (videoInfo)=> {
+    sync = (videoInfo)=> {
         const currentTime = this.player.getCurrentTime()
-        console.log(videoInfo)
         if(this.state.source !== videoInfo.source){
             this.setState({source: videoInfo.source})
         }
@@ -46,7 +28,6 @@ export default class Player extends Component{
             || currentTime > videoInfo.time + this.acceptedLagTime ){
               this.seek(videoInfo.time)
         }
-
         this.setState({playing: !videoInfo.paused });
     }
 
@@ -59,23 +40,14 @@ export default class Player extends Component{
         }
     }
 
-    tryToChangeSource(name){
-        console.log(ReactPlayer.canPlay(name))
-        this.socket.emit('changeSource', name, ReactPlayer.canPlay(name))
-    }
-
     _handlePlay = () => {
         this.setState({playing: true})
-        this.socket.emit("playerStarted", this.videoInfo())
+        this.props.onPlay()
     }
 
     _handlePause = ()=>{
         this.setState({playing: false})
-        this.socket.emit("playerPaused", this.videoInfo())
-    }
-
-    _handleSeek = () =>{
-        this.socket.emit("playerStarted", this.videoInfo())
+        this.props.onPause()
     }
 
     seek(seconds){
@@ -96,21 +68,6 @@ export default class Player extends Component{
                         onPause={this._handlePause}
                         onSeek={this._handleSeek}
                     />
-                </div>
-                <div className="control-container">
-
-                    <input type="text" placeholder="URL" value={this.state.inputText} onChange={(e)=>this.setState({inputText: e.target.value})} />
-
-                    <div className="button-container">
-                        <button onClick={()=>{
-                            this.tryToChangeSource(this.state.inputText)
-                        }}>
-                            Trocar vídeo
-                        </button>
-                        <button onClick={()=>{this.socket.emit("syncMe")}}>
-                            Sincronizar
-                        </button>
-                    </div>
                 </div>
             </div>
         )
