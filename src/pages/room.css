@@ -70,3 +70,12 @@
     color: #b6b6b6;
     background-color: #000000;
 }
+
+.video-container{
+    width: 80%;
+}
+
+.video-chat-container{
+    display: flex;
+    flex-direction: row;
+}

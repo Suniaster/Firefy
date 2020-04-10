@@ -77,28 +77,31 @@ export default class Room extends Component {
     return (
       <div className="room-container">
         <Header/>
+        <div className="video-chat-container">
+          <div className="video-container">
+            {((socket!==undefined) && defaultPlayer) && <Player socket={socket} ref={(ref)=> this.defaultPlayer = ref} onPlay={this._onStartHandler} onPause={this._onPauseHandler} />}
+            {((socket!==undefined) && !defaultPlayer) && <AnimePlayer socket={socket} ref={(ref)=> this.animePlayer = ref}  onPlay={this._onStartHandler} onPause={this._onPauseHandler} /> }
+            {isHost && <div className="host_div">Você é o host</div>}
+            <div className="control-container">
 
-        {((socket!==undefined) && defaultPlayer) && <Player socket={socket} ref={(ref)=> this.defaultPlayer = ref} onPlay={this._onStartHandler} onPause={this._onPauseHandler} />}
-        {((socket!==undefined) && !defaultPlayer) && <AnimePlayer socket={socket} ref={(ref)=> this.animePlayer = ref}  onPlay={this._onStartHandler} onPause={this._onPauseHandler} /> }
-        {isHost && <div className="host_div">Você é o host</div>}
-        <div className="control-container">
+              <input type="text" placeholder="URL" value={this.state.newSourceInput} onChange={(e)=>this.setState({newSourceInput: e.target.value})} />
 
-          <input type="text" placeholder="URL" value={this.state.newSourceInput} onChange={(e)=>this.setState({newSourceInput: e.target.value})} />
-
-          <div className="button-container">
-              <button onClick={this.changeSourceButton}>
-                  Trocar vídeo
-              </button>
-              <button onClick={this.syncButton}>
-                  Sincronizar
-              </button>
+              <div className="button-container">
+                  <button onClick={this.changeSourceButton}>
+                      Trocar vídeo
+                  </button>
+                  <button onClick={this.syncButton}>
+                      Sincronizar
+                  </button>
+              </div>
+            </div>
           </div>
-        </div>
-          
           <Chat
             roomName={this.roomName}
             hostName={this.hostName}
           />
+
+        </div>
       </div>
     );
   }

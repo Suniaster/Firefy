@@ -1,0 +1,39 @@
+
+.chat-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    height: 500px;
+    width: 350px;
+
+    /* align-items: flex-end; */
+    border: solid rgb(167, 167, 167);
+    border-radius: 20px;
+    border-width: 1px;
+    /* overflow-y: auto ; */
+
+    overflow:auto;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+
+.messages-container{
+    display: block;
+    white-space: pre-wrap;
+    width:100%
+}
+
+.message{
+    color: 'white';
+    display: block; 
+}
+
+.message-user{
+   color: rgb(148, 148, 148);
+}
+.message-text{
+    color: rgb(231, 231, 231); 
+}
