@@ -8,6 +8,7 @@ import Chat from '../components/Chat';
 import Player from '../components/players/Player';
 import AnimePlayer from '../components/players/AnimePlayer'
 import ReactPlayer from 'react-player';
+import {Modal, Button} from 'react-bootstrap'
 // import AdSense from 'react-adsense';
 
 export default class Room extends Component {
@@ -24,7 +25,10 @@ export default class Room extends Component {
       socket: undefined,
       isHost: false,
       defaultPlayer: true,
-      newSourceInput: ''
+      newSourceInput: '',
+      showNameModal: false,
+      newNameInput: '',
+      changeNameButtonDisabled: false
     }
   }
 
@@ -40,6 +44,9 @@ export default class Room extends Component {
     this.socket.on('sync', this.__syncPlayer)
     this.socket.on('getHostInfo', this.__getHostInfo)
 
+    this.initializeName()
+
+    // Coisa do google ads
     const script = document.createElement('script')
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
     script.async = true;
@@ -75,8 +82,36 @@ export default class Room extends Component {
     this.socket.emit("syncMe")
   }
 
+  changeName = (newName) =>{
+    this.socket.emit("changeName", newName)
+    localStorage.setItem("@chatName", newName)
+  }
+
+  initializeName = () =>{
+    let name = localStorage.getItem("@chatName")
+    if(name === null){
+      this.setState({showNameModal: true})
+    }
+    else{
+      this.changeName(name)
+    }
+  }
+
+  showModal = () =>{
+    this.setState({showNameModal: true})
+    this.setState({changeNameButtonDisabled: true})
+  }
+
+  dimissModal = () =>{
+    this.setState({showNameModal: false})
+    // Prevent from modal double open on enter button
+    setTimeout(()=> this.setState({changeNameButtonDisabled: false}),
+     1000
+    )
+  }
+
   render(){
-    const {socket, isHost, defaultPlayer} = this.state
+    const {socket, isHost, defaultPlayer, showNameModal, changeNameButtonDisabled} = this.state
     return (
       <div className="room-container">
         <Header/>
@@ -96,6 +131,12 @@ export default class Room extends Component {
                   <button onClick={this.syncButton}>
                       Sincronizar
                   </button>
+                  <Button variant="light"
+                    onClick={this.showModal}
+                    disabled={changeNameButtonDisabled}
+                  >
+                      Change nick
+                  </Button>
               </div>
             </div>
           </div>
@@ -107,6 +148,38 @@ export default class Room extends Component {
             />
           )}
         </div>
+
+        <Modal show={showNameModal} onHide={this.dimissModal} animation={false}>
+          <Modal.Header>
+            <Modal.Title>Change nickname</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <input
+              type="text"
+              placeholder="Enter new nick"
+              value={this.state.newNameInput}
+              onChange={(e)=>this.setState({newNameInput: e.target.value})}  
+              onKeyDown={(e)=>{
+                var code = e.keyCode || e.which;
+                if(code === 13) { //13 is the enter keycode
+                  this.changeName(this.state.newNameInput)
+                  this.dimissModal()
+                } 
+              }}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button 
+              variant="secondary" 
+              onClick={()=>{
+                this.changeName(this.state.newNameInput)
+                this.dimissModal()
+              }}
+            >
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
