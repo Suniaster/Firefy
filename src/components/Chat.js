@@ -1,5 +1,6 @@
 
 import React, {  Component} from 'react'
+import {Button} from 'react-bootstrap'
 import '../styles/chat.css'
 export default class Chat extends Component{
 
@@ -47,9 +48,9 @@ export default class Chat extends Component{
                     } 
                   }}
                 />
-                <button onClick={this.sendMessage}>
+                <Button variant="light" size="sm" onClick={this.sendMessage}>
                 Enviar
-                </button>
+                </Button>
               </div>
             </div>
         )
