@@ -1,10 +1,9 @@
 
 import React, {  Component} from 'react'
-import io from 'socket.io-client'
 import '../styles/chat.css'
 export default class Chat extends Component{
 
-    constructor({roomName, hostName}){
+    constructor({roomName, hostName, socket}){
         super()
         this.roomName = roomName
         this.hostName = hostName
@@ -13,12 +12,10 @@ export default class Chat extends Component{
             messages: [],
             inputText: ''
         }
-    
+        this.socket = socket
     }
 
     componentDidMount(){
-        this.socket = io.connect(this.hostName + this.roomName + '/chat')
-        
         this.socket.on("newMessage", (messageObject)=>{
             this.setState({messages:[...this.state.messages, messageObject]})
         })

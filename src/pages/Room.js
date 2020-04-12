@@ -99,11 +99,13 @@ export default class Room extends Component {
               </div>
             </div>
           </div>
-          <Chat
-            roomName={this.roomName}
-            hostName={this.hostName}
-          />
-        
+          {(socket!== undefined) && (
+            <Chat
+              roomName={this.roomName}
+              hostName={this.hostName}
+              socket={socket}
+            />
+          )}
         </div>
       </div>
     );
