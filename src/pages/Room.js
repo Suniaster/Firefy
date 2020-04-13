@@ -9,6 +9,7 @@ import Player from '../components/players/Player';
 import AnimePlayer from '../components/players/AnimePlayer'
 import ReactPlayer from 'react-player';
 import {Modal, Button} from 'react-bootstrap'
+import UserContainer from '../components/UsersContainer';
 // import AdSense from 'react-adsense';
 
 export default class Room extends Component {

@@ -30,20 +30,27 @@ export default class UserContainer extends Component{
         })
 
         this.socket.on("userConnected", (userInfo)=>{
-            let newList = this.state.users
-            newList[userInfo.id] = {
-                name: userInfo.name,
-                host: userInfo.host
-            }
-            this.setState({users: newList})
+            this.updateUser(userInfo)
         })
         this.socket.on("userDisconnected", (user)=>{
             let newList = this.state.users
             delete newList[user.id]
             this.setState({users: newList})
         })
+
+        this.socket.on("updateUser", (user)=>{
+            this.updateUser(user)
+        })
     }
 
+    updateUser(userInfo){
+        let newList = this.state.users
+        newList[userInfo.id] = {
+            name: userInfo.name,
+            host: userInfo.host
+        }
+        this.setState({users: newList})
+    }
 
 
     render(){

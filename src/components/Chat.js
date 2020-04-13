@@ -1,6 +1,5 @@
 
 import React, {  Component} from 'react'
-import {Button} from 'react-bootstrap'
 import '../styles/chat.css'
 export default class Chat extends Component{
 
