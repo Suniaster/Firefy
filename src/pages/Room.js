@@ -117,36 +117,61 @@ export default class Room extends Component {
         <Header/>
         <div className="video-chat-container">
           <div className="video-container">
-            {((socket!==undefined) && defaultPlayer) && <Player socket={socket} ref={(ref)=> this.defaultPlayer = ref} onPlay={this._onStartHandler} onPause={this._onPauseHandler} />}
-            {((socket!==undefined) && !defaultPlayer) && <AnimePlayer socket={socket} ref={(ref)=> this.animePlayer = ref}  onPlay={this._onStartHandler} onPause={this._onPauseHandler} /> }
+            {((socket!==undefined) && defaultPlayer) && (
+              <Player 
+                socket={socket} 
+                ref={(ref)=> this.defaultPlayer = ref} 
+                onPlay={this._onStartHandler} 
+                onPause={this._onPauseHandler} 
+              />
+            )}
+            {((socket!==undefined) && !defaultPlayer) && ( 
+              <AnimePlayer 
+                socket={socket} 
+                ref={(ref)=> this.animePlayer = ref}  
+                onPlay={this._onStartHandler} 
+                onPause={this._onPauseHandler} 
+              /> 
+            )}
             {isHost && <div className="host_div">Você é o host</div>}
+            <div className="connected-container">
+
+            </div>
+          </div>
+          <div style={{height:"100%", width:"100%"}}>
+            {(socket!== undefined) && (
+              <Chat
+                roomName={this.roomName}
+                hostName={this.hostName}
+                socket={socket}
+              />
+            )}
+
             <div className="control-container">
 
-              <input type="text" placeholder="URL" value={this.state.newSourceInput} onChange={(e)=>this.setState({newSourceInput: e.target.value})} />
+              <input 
+                type="text" 
+                placeholder="URL"
+                value={this.state.newSourceInput} 
+                onChange={(e)=>this.setState({newSourceInput: e.target.value})} 
+              />
 
               <div className="button-container">
-                  <button onClick={this.changeSourceButton}>
-                      Trocar vídeo
-                  </button>
-                  <button onClick={this.syncButton}>
-                      Sincronizar
-                  </button>
-                  <Button variant="light"
-                    onClick={this.showModal}
-                    disabled={changeNameButtonDisabled}
-                  >
-                      Change nick
-                  </Button>
+                <button onClick={this.changeSourceButton}>
+                    Trocar vídeo
+                </button>
+                <button onClick={this.syncButton}>
+                    Sincronizar
+                </button>
+                <Button variant="light"
+                  onClick={this.showModal}
+                  disabled={changeNameButtonDisabled}
+                >
+                    Change nick
+                </Button>
               </div>
             </div>
           </div>
-          {(socket!== undefined) && (
-            <Chat
-              roomName={this.roomName}
-              hostName={this.hostName}
-              socket={socket}
-            />
-          )}
         </div>
 
         <Modal show={showNameModal} onHide={this.dimissModal} animation={false}>

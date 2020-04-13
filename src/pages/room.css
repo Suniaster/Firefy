@@ -1,12 +1,11 @@
 .player-container {
-    margin: 4rem auto 1rem auto;
-    max-width: 720px;
-    max-height: auto;
-    border: 1px solid #454545;
+    display: flex;
+    background-color: black;
+    justify-content: center;
 }
 
 .control-container {
-    margin-top: 1rem;
+    margin-top: 0.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +17,7 @@
     width: 100%;
     max-width: 480px; 
     background-color: black;
-    height: 47px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +25,7 @@
     border-radius: 3px;
     border: 1px solid #454545;
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 0.3rem;
 }
 
 .control-container input::placeholder {
@@ -65,14 +64,18 @@
 }
 
 .host_div{
-    margin-top: 1rem;
+    text-align: center;
     padding: 0.2rem 1rem 0.2rem 1rem;
     color: #b6b6b6;
-    background-color: #000000;
+    background-color: #535353;
+}
+
+.connected-container{
+    /* height: 100%; */
 }
 
 .video-container{
-    width: 80%;
+    width: 80vw;
 }
 
 .video-chat-container{

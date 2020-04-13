@@ -32,11 +32,14 @@ export default class Chat extends Component{
             <div className="chat-container">
               <div className="messages-container">
                 {this.state.messages.map((message)=>(
-                    <div className="message"><span className="message-user">{message.id}:</span> <span className="message-text">{message.text}</span></div>
+                    <div className="message">
+                      <span className="message-user">{message.id}:</span> <span className="message-text">{message.text}</span>
+                    </div>
                 ))}
               </div>
               <div>
                 <input 
+                  className="chat-input"
                   type="text" 
                   placeholder="Digite Mensagem" 
                   value={this.state.inputText} 
@@ -48,9 +51,6 @@ export default class Chat extends Component{
                     } 
                   }}
                 />
-                <Button variant="light" size="sm" onClick={this.sendMessage}>
-                Enviar
-                </Button>
               </div>
             </div>
         )

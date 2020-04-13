@@ -4,36 +4,54 @@
     flex-direction: column;
     justify-content: flex-end;
 
-    height: 500px;
-    width: 350px;
+    height: 80vh;
+    width: 100%;
+    overflow-y: auto ;
 
-    /* align-items: flex-end; */
-    border: solid rgb(167, 167, 167);
-    border-radius: 20px;
-    border-width: 1px;
-    /* overflow-y: auto ; */
-
-    overflow:auto;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    margin-top: 30px;
-    margin-right: 20px;
 }
 
 .messages-container{
-    display: block;
+    display: flex;
+    flex-direction: column;
     white-space: pre-wrap;
-    width:100%
+    width:100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+
+
+
+    padding-left: 10px;
+    margin-right: 20px;
+}
+
+.chat-input{
+    color: #7A7A7A;
+    width: 100%;
+    max-width: 480px; 
+    background-color: black;
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    border: 1px solid #454545;
+    box-sizing: border-box;
+    padding: 1rem;
 }
 
 .message{
-    color: 'white';
-    display: block; 
+    color: rgb(148, 148, 148);
+    display: flex;
+    overflow-wrap: break-word;
 }
 
 .message-user{
    color: rgb(148, 148, 148);
+   margin-right: 5px;
 }
 .message-text{
+    word-break: break-all;
+    display: block;
     color: rgb(231, 231, 231); 
 }

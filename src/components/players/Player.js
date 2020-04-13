@@ -66,6 +66,8 @@ export default class Player extends PlayerBase{
                         onPlay={this._handlePlay}
                         onPause={this._handlePause}
                         onSeek={this._handleSeek}
+                        width="80vw"
+                        height="80vh"
                     />
                 </div>
             </div>
