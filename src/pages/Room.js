@@ -135,7 +135,9 @@ export default class Room extends Component {
             )}
             {isHost && <div className="host_div">Você é o host</div>}
             <div className="connected-container">
-
+              {(socket!== undefined) && (
+                <UserContainer socket={socket}/>
+              )}
             </div>
           </div>
           <div style={{height:"100%", width:"100%"}}>
