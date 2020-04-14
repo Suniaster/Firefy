@@ -26,7 +26,7 @@ export default class RoomIndex extends Component{
             this.setState({redirect: (<Redirect to={'/room/'+ res.data.roomid}/>)})
         })
     }
-    render(){
+    render = () =>{
         
         const rooms = this.state.rooms.map((roomId)=>{
             return (
