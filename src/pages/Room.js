@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import Header from '../components/header'
 
-import './room.css'
+import '../styles/room.css'
 
 import io from 'socket.io-client'
 import Chat from '../components/Chat';
@@ -20,7 +20,7 @@ export default class Room extends Component {
 
     this.hostName = "https://firefy-back.herokuapp.com"
     // this.hostName = "http://localhost:2000"
-    this.roomName = "/room"
+    this.roomName = "/room/main"
 
     this.state = {
       socket: undefined,
