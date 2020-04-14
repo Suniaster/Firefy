@@ -51,13 +51,6 @@ export default class Room extends Component {
     this.socket.on('getHostInfo', this.__getHostInfo)
 
     this.initializeName()
-
-    // Coisa do google ads
-    const script = document.createElement('script')
-    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-    script.async = true;
-    script.setAttribute("data-ad-client","ca-pub-7389308630172766");
-    document.head.appendChild(script)
   }
 
   __syncPlayer = (videoInfo) =>{
