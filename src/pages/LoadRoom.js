@@ -1,0 +1,46 @@
+import React, {Component} from 'react'
+import api from '../services/api'
+import Room from './Room'
+
+
+
+export default class LoadRoom extends Component{
+
+    constructor(props){
+        super(props)
+        let href = window.location.pathname
+        this.roomId = href.substring(6)
+
+        this.state = {
+            loading: true,
+            problem: false
+        }
+    }
+
+    componentDidMount(){
+        api.get('/room').then((res)=>{
+            let rooms = res.data
+            if(rooms.includes(this.roomId))
+                this.setState({problem: false})
+            else
+                this.setState({problem: true})
+            this.setState({loading: false})
+        }).catch((err)=>{
+            this.setState({
+                problem: true,
+                loading: false
+            })
+        })
+    }
+
+    render(){
+        const {loading, problem} = this.state
+        return(
+            <div>
+                {(!loading && problem ) && <h1 style={{color: "white"}}>Sala {this.roomId} não existe</h1>}
+                {(!loading && !problem) && <Room roomId={this.roomId}/> }
+                {loading && <h1>Carregando</h1>}
+            </div>
+        )
+    }
+}

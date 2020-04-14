@@ -5,9 +5,10 @@ import {
   Switch,
   Route } from "react-router-dom";
 
-import Room from './pages/Room'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './global.css'
+import PageDontExist from './pages/PageDontExist';
+import LoadRoom from './pages/LoadRoom';
 
 export default function App() {
   return(
@@ -15,10 +16,12 @@ export default function App() {
     
     <Switch>
 
-      <Route path="/">
-        <Room />
+      <Route exact path="/room/*">
+        <LoadRoom />
       </Route>
-      
+      <Route exact path="*">
+        <PageDontExist />
+      </Route>
     </Switch>
 
   </Router>
