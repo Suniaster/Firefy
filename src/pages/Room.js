@@ -15,12 +15,17 @@ import UserContainer from '../components/UsersContainer';
 export default class Room extends Component {
   acceptedLagTime = 1
 
+  /**
+   * 
+   * @param {{roomId:string}} props 
+   * @param {*} context 
+   */
   constructor(props, context) {
     super(props, context);
 
-    this.hostName = "https://firefy-back.herokuapp.com"
-    // this.hostName = "http://localhost:2000"
-    this.roomName = "/room/main"
+    // this.hostName = "https://firefy-back.herokuapp.com"
+    this.hostName = "http://localhost:2000"
+    this.roomName = "/room/"+ this.props.roomId
 
     this.state = {
       socket: undefined,
