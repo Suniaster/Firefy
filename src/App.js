@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './global.css'
 import PageDontExist from './pages/PageDontExist';
 import LoadRoom from './pages/LoadRoom';
+import RoomIndex from './pages/RoomsIndex';
 
 export default function App() {
   return(
@@ -19,7 +20,10 @@ export default function App() {
       <Route exact path="/room/*">
         <LoadRoom />
       </Route>
-      <Route exact path="*">
+      <Route exact path="/rooms">
+        <RoomIndex />
+      </Route>
+      <Route path="*">
         <PageDontExist />
       </Route>
     </Switch>
