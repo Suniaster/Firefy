@@ -20,7 +20,7 @@ export default class LoadRoom extends Component{
     componentDidMount(){
         api.get('/room').then((res)=>{
             let rooms = res.data
-            if(rooms.includes(this.roomId))
+            if(this.listIncludes(rooms, this.roomId))
                 this.setState({problem: false})
             else
                 this.setState({problem: true})
@@ -31,6 +31,14 @@ export default class LoadRoom extends Component{
                 loading: false
             })
         })
+    }
+
+    listIncludes(rooms ,roomId){
+        for(let i=0;i<rooms.length;i+=1){
+            if(roomId == rooms[i].roomId)
+            return true
+        }
+        return false
     }
 
     render(){
