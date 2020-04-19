@@ -2,6 +2,12 @@
     display: flex;
     background-color: black;
     justify-content: center;
+    /* Se mudar a altura aqui para o player de anime
+        lembre-se de trocar as dimensões do player do 
+        youtube tambem
+    */
+    width: 80vw;
+    height: 80vh;
 }
 
 .control-container {

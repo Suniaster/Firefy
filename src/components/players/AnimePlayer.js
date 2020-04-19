@@ -66,6 +66,9 @@ export default class AnimePlayer extends PlayerBase{
         }
       }
     }
+    if(player.error){
+      // Do something
+    }
   }
 
   videoInfo(){
@@ -144,7 +147,10 @@ export default class AnimePlayer extends PlayerBase{
             ref={player => {
                 this.player = player;
             }}
-            autoPlay
+            autoPlay={false}
+            fluid={false}
+            width={"100%"}
+            height={"100%"}
           >
             <source src={this.state.source} />
           </Player>
