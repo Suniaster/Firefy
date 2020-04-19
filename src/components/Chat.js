@@ -1,4 +1,3 @@
-
 import React, {  Component} from 'react'
 import '../styles/chat.css'
 export default class Chat extends Component{
