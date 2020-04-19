@@ -1,5 +1,5 @@
 import React from 'react'
-import './navbar.css'
+import '../styles/sidebar.css'
 
 function Item({children}) {
     return(

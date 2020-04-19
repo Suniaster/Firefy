@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import './header.css'
+import '../styles/header.css'
 import { FaBars } from 'react-icons/fa'
 
-import Navbar from '../navbar'
+import Sidebar from './Sidebar'
 
-import Logo from '../../assets/logo_white.svg'
+import Logo from '../assets/logo_white.svg'
 
 export default function Header() {
 
@@ -28,7 +28,7 @@ export default function Header() {
                 <span>Firefy</span>
             </div>
         </header>
-        {menuClick && <Navbar/>}
+        {menuClick && <Sidebar/>}
         </>
     )
 
