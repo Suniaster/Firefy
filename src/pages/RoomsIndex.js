@@ -4,6 +4,9 @@ import { Link, Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
 
+import '../styles/rooms.css'
+import RoomList from '../components/RoomList';
+
 export default class RoomIndex extends Component{
 
     constructor(props){
@@ -28,15 +31,20 @@ export default class RoomIndex extends Component{
     }
     render = () =>{
         
-        const rooms = this.state.rooms.map((roomId)=>{
+        const rooms = this.state.rooms.map(({roomId, userCount})=>{
             return (
-                <div><Link to={"/room/"+roomId}>Entrar em: {roomId}</Link></div>
+                <RoomList roomId={roomId} userCount={userCount}/>
             )
         })
         return(
-            <div>
-                {rooms}
+            <div className="main-container">
                 <Button onClick={this.createRoom}>Criar sala</Button>
+
+                <div className="rooms-container">
+                    <h1 style={{textAlign:"center", marginTop: "30px"}}> Salas: </h1>
+                    {rooms}
+                </div>
+               
                 {this.state.redirect}
             </div>
         )

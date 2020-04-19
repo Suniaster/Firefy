@@ -10,8 +10,10 @@ import './global.css'
 import PageDontExist from './pages/PageDontExist';
 import LoadRoom from './pages/LoadRoom';
 import RoomIndex from './pages/RoomsIndex';
+import Home from './pages/Home';
 
 export default function App() {
+  
   return(
   <Router>
     
@@ -22,6 +24,9 @@ export default function App() {
       </Route>
       <Route exact path="/rooms">
         <RoomIndex />
+      </Route>
+      <Route path="/">
+        <Home />
       </Route>
       <Route path="*">
         <PageDontExist />

@@ -1,0 +1,35 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.rooms-container{
+
+}
+
+.room-list{
+    display: flex;
+    align-items: center;
+    
+    height: 3rem;
+    border-radius: 10px;
+
+    border: 1px solid rgb(255, 255, 255);
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    padding-left: 3px;
+    padding-right: 10px;
+}
+.icon{
+    margin-right: 5px;
+}
+.icon-container{
+    margin-left: 3px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+}
