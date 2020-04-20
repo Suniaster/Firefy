@@ -1,19 +1,17 @@
 import React, {Component} from 'react'
 import api from '../services/api'
-import { Link, Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
 
 import '../styles/rooms.css'
 import RoomList from '../components/RoomList';
 
-export default class RoomIndex extends Component{
+class RoomIndex extends Component{
 
     constructor(props){
         super(props)
         this.state = {
-            rooms: [],
-            redirect: undefined
+            rooms: []
         }
     }
 
@@ -26,7 +24,7 @@ export default class RoomIndex extends Component{
 
     createRoom = ()=> {
         api.get('/room/create').then(res =>{
-            this.setState({redirect: (<Redirect to={'/room/'+ res.data.roomid}/>)})
+            this.props.history.push('/room/'+ res.data.roomid)
         })
     }
     render = () =>{
@@ -45,8 +43,9 @@ export default class RoomIndex extends Component{
                     {rooms}
                 </div>
                
-                {this.state.redirect}
             </div>
         )
     }
 }
+
+export default withRouter(RoomIndex);

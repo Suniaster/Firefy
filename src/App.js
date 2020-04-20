@@ -11,23 +11,35 @@ import PageDontExist from './pages/PageDontExist';
 import LoadRoom from './pages/LoadRoom';
 import RoomIndex from './pages/RoomsIndex';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import {ProtectedUserRoute} from './utils/UserLoggedOnly';
 
 export default function App() {
-  
+
   return(
   <Router>
     
     <Switch>
 
-      <Route exact path="/room/*">
-        <LoadRoom />
-      </Route>
-      <Route exact path="/rooms">
-        <RoomIndex />
-      </Route>
-      <Route path="/">
-        <Home />
-      </Route>
+      <ProtectedUserRoute
+        component={LoadRoom}
+        exact 
+        path="/room/*" 
+      />
+
+      <ProtectedUserRoute 
+        component={RoomIndex} 
+        exact 
+        path="/rooms"
+      />
+
+      <Route
+        component={Login}
+        exact 
+        path="/login" />
+    
+      <Route exact component={Home} path="/"/>
+      
       <Route path="*">
         <PageDontExist />
       </Route>
