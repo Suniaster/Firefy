@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './global.css'
 import PageDontExist from './pages/PageDontExist';
 import LoadRoom from './pages/LoadRoom';
+import RoomTest from './pages/RoomTest';
 import RoomIndex from './pages/RoomsIndex';
 import Home from './pages/Home';
 
@@ -25,7 +26,10 @@ export default function App() {
       <Route exact path="/rooms">
         <RoomIndex />
       </Route>
-      <Route path="/">
+      <Route exact path="/teste">
+        <RoomTest />
+      </Route>
+      <Route exact path="/">
         <Home />
       </Route>
       <Route path="*">
