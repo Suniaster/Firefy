@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
 
 import '../styles/rooms.css'
+import '../styles/chat.css'
 import RoomList from '../components/RoomList';
 
 class RoomIndex extends Component{
@@ -11,7 +12,8 @@ class RoomIndex extends Component{
     constructor(props){
         super(props)
         this.state = {
-            rooms: []
+            rooms: [],
+            inputRoom: ''
         }
     }
 
@@ -23,9 +25,15 @@ class RoomIndex extends Component{
     }
 
     createRoom = ()=> {
-        api.get('/room/create').then(res =>{
+        let roomName = this.state.inputRoom
+        if(!roomName) roomName = undefined;
+
+        api.post('/room/create', {roomName}).then(res =>{
             this.props.history.push('/room/'+ res.data.roomid)
+        }).catch((err)=>{
+            alert("Choose other name for your room")
         })
+
     }
     render = () =>{
         
@@ -36,6 +44,15 @@ class RoomIndex extends Component{
         })
         return(
             <div className="main-container">
+                <div>
+                    <input 
+                        className="chat-input"
+                        type="text" 
+                        placeholder="Nome da sala" 
+                        value={this.state.inputRoom} 
+                        onChange={(e)=>this.setState({inputRoom: e.target.value})}
+                    />
+                </div>
                 <Button onClick={this.createRoom}>Criar sala</Button>
 
                 <div className="rooms-container">
