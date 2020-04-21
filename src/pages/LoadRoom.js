@@ -18,13 +18,8 @@ export default class LoadRoom extends Component{
     }
 
     componentDidMount(){
-        api.get('/room').then((res)=>{
-            let rooms = res.data
-            if(this.listIncludes(rooms, this.roomId))
-                this.setState({problem: false})
-            else
-                this.setState({problem: true})
-            this.setState({loading: false})
+        api.get('/room/info/'+this.roomId).then((res)=>{
+            this.setState({problem: false,loading: false})
         }).catch((err)=>{
             this.setState({
                 problem: true,
