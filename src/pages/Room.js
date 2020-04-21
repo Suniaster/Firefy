@@ -57,9 +57,6 @@ export default class Room extends Component {
       socket: this.socket
     })
 
-    this.socket.on("ureHost", ()=>{
-      this.setState({isHost: true})
-    })
     this.socket.on('sync', this.__syncPlayer)
     this.socket.on('getHostInfo', this.__getHostInfo)
 
@@ -131,7 +128,7 @@ export default class Room extends Component {
   }
 
   render(){
-    const {socket, isHost, defaultPlayer} = this.state
+    const {socket, defaultPlayer} = this.state
     return (
       <div>
 

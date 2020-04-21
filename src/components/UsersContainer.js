@@ -15,6 +15,7 @@ export default class UserContainer extends Component{
 
         this.state = {
             users:{},
+            isHost: false
         }
     }
 
@@ -25,6 +26,7 @@ export default class UserContainer extends Component{
             let newList = this.state.users
             usersInfo.forEach((user)=>{
                 newList[user.id] = {
+                    id: user.id,
                     name: user.name,
                     host: user.host
                 }
@@ -44,11 +46,18 @@ export default class UserContainer extends Component{
         this.socket.on("updateUser", (user)=>{
             this.updateUser(user)
         })
+        this.socket.on("ureHost", ()=>{
+            this.setState({isHost: true})
+        })
+        this.socket.on("lostHost", ()=>{
+            this.setState({isHost: false})
+        })
     }
 
     updateUser(userInfo){
         let newList = this.state.users
         newList[userInfo.id] = {
+            id: userInfo.id,
             name: userInfo.name,
             host: userInfo.host
         }
@@ -61,8 +70,8 @@ export default class UserContainer extends Component{
             let user = this.state.users[userId]
             let img = user.host ? Crow : Chapeu
             
-            let changeHostDisabled = this.props.isHost ? 'auto' : 'none'
-        
+            let changeHostDisabled = this.state.isHost ? 'auto' : 'none'
+
             let border_color = user.host ? '#EAB100' : '#D4DCE8';
             return (
                 <OverlayTrigger
@@ -73,7 +82,7 @@ export default class UserContainer extends Component{
                 overlay={
                   <Popover>
                     <Popover.Content>
-                        <Button>
+                        <Button onClick={()=>this.socket.emit("changeHost", {newHostId: user.id})}>
                             Pass Host
                         </Button>
                     </Popover.Content>
