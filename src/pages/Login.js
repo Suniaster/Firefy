@@ -14,7 +14,7 @@ class Login extends Component {
 
         api.post('/user/google/login', {token_id}).then((res)=>{
             let token = res.data.token
-
+            localStorage.setItem("@user-info", JSON.stringify(res.data))
             localStorage.setItem("@user-auth-token", token)
             
             this.props.history.push("/rooms");

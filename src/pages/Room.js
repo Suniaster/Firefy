@@ -104,13 +104,12 @@ export default class Room extends Component {
   }
 
   initializeName = () =>{
-    let name = localStorage.getItem("@chatName")
-    if(name === null){
-      // this.setState({showNameModal: true})
-    }
-    else{
-      this.changeName(name)
-    }
+    const {username, chatname} = JSON.parse(localStorage.getItem("@user-info")).user
+
+    if(chatname)
+      this.changeName(chatname)
+    else
+      this.changeName(username)
   }
 
   openModal(modalName){
@@ -167,7 +166,7 @@ export default class Room extends Component {
           </div>
 
         <div className="control-container">
-          <div className="room-title-wrapper">Nome da Sala</div>
+          <div className="room-title-wrapper">Sala: {this.props.roomId}</div>
 
             {(socket!== undefined) && (
                 <Chat
