@@ -12,6 +12,8 @@ import {Modal, Button} from 'react-bootstrap'
 import UserContainer from '../components/UsersContainer';
 // import AdSense from 'react-adsense';
 
+import Clipboard from 'react-clipboard.js'
+
 export default class Room extends Component {
   acceptedLagTime = 1
 
@@ -26,15 +28,22 @@ export default class Room extends Component {
     this.hostName = "https://firefy-back.herokuapp.com"
     // this.hostName = "http://localhost:2000"
     this.roomName = "/room/"+ this.props.roomId
-
+    
+    this.href = window.location.href
+    
     this.state = {
       socket: undefined,
       isHost: false,
       defaultPlayer: true,
       newSourceInput: '',
-      showNameModal: false,
-      newNameInput: '',
-      changeNameButtonDisabled: false
+      inputs:{
+        newVideo: ''
+      },
+      modals:{
+        newVideo: false,
+        queue: false
+      }
+
     }
   }
 
@@ -93,28 +102,33 @@ export default class Room extends Component {
   initializeName = () =>{
     let name = localStorage.getItem("@chatName")
     if(name === null){
-      this.setState({showNameModal: true})
+      // this.setState({showNameModal: true})
     }
     else{
       this.changeName(name)
     }
   }
 
-  showModal = () =>{
-    this.setState({showNameModal: true})
-    this.setState({changeNameButtonDisabled: true})
+  openModal(modalName){
+    if(modalName === 'newVideo'){
+      this.setState({modals: {newVideo: true}})
+    }
+    if(modalName === 'queue'){
+      this.setState({modals: {queue: true}})
+    }
   }
 
-  dimissModal = () =>{
-    this.setState({showNameModal: false})
-    // Prevent from modal double open on enter button
-    setTimeout(()=> this.setState({changeNameButtonDisabled: false}),
-     1000
-    )
+  dimissModal(modalName){
+    if(modalName === 'newVideo'){
+      this.setState({modals: {newVideo: false}})
+    }
+    if(modalName === 'queue'){
+      this.setState({modals: {queue: false}})
+    }
   }
 
   render(){
-    const {socket, isHost, defaultPlayer, showNameModal, changeNameButtonDisabled} = this.state
+    const {socket, isHost, defaultPlayer} = this.state
     return (
       <div>
 
@@ -167,15 +181,29 @@ export default class Room extends Component {
           /> */}
           <div className="all-button-container">
             <div className="button-smaller-container">
-                <button className="button-smaller">Queue</button>
-                <button className="button-smaller">Room Link</button>
+                <button 
+                  className="button-smaller"
+                  onClick={()=>this.openModal("queue")}
+                  >
+                  Queue
+                </button>
+      
+                <Clipboard 
+                  className="button-smaller" 
+                  button-href="#" 
+                  data-clipboard-text={this.href}
+                  onSuccess={()=>{alert("Copied to clipboard")}}
+                  >
+                  Room Link
+                </Clipboard>
+              
                 <button className="button-smaller" onClick={this.syncButton}>
                     Syncronize
                 </button>
             </div>
             <div className="button-bigger-container">
 
-              <button className="button-bigger-red"onClick={this.changeSourceButton}>
+              <button className="button-bigger-red"onClick={()=>this.openModal("newVideo")}>
                   Add video
               </button>
               <button className="change-avatar"/>
@@ -186,34 +214,47 @@ export default class Room extends Component {
       </Header>
     </div>
 
-        <Modal show={showNameModal} onHide={this.dimissModal} animation={false}>
+        <Modal show={this.state.modals.newVideo} onHide={()=>this.dimissModal('newVideo')} animation={false}>
           <Modal.Header>
-            <Modal.Title>Change nickname</Modal.Title>
+            <Modal.Title>Add video to Queue</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <input
               type="text"
-              placeholder="Enter new nick"
-              value={this.state.newNameInput}
-              onChange={(e)=>this.setState({newNameInput: e.target.value})}  
-              onKeyDown={(e)=>{
-                var code = e.keyCode || e.which;
-                if(code === 13) { //13 is the enter keycode
-                  this.changeName(this.state.newNameInput)
-                  this.dimissModal()
-                } 
-              }}
+              placeholder="Enter video url"
+              value={this.state.inputs.newVideo}
+              onChange={(e)=>this.setState({ inputs: { newVideo: e.target.value } } )}  
             />
           </Modal.Body>
           <Modal.Footer>
             <Button 
               variant="secondary" 
               onClick={()=>{
-                this.changeName(this.state.newNameInput)
-                this.dimissModal()
+                // * Trocar video
+                this.dimissModal('newVideo')
               }}
             >
-              Save Changes
+              Adicionar a Fila
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={this.state.modals.queue} onHide={()=>this.dimissModal('queue')} animation={false}>
+          <Modal.Header>
+            <Modal.Title>Queue</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            
+          </Modal.Body>
+          <Modal.Footer>
+            <Button 
+              variant="secondary" 
+              onClick={()=>{
+                // * Trocar video
+                this.dimissModal('queue')
+              }}
+            >
+              Fechar
             </Button>
           </Modal.Footer>
         </Modal>
