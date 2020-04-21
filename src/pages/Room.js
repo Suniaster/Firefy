@@ -87,7 +87,7 @@ export default class Room extends Component {
   }
 
   changeSourceButton = () =>{
-    this.socket.emit('changeSource', this.state.newSourceInput)
+    this.socket.emit('changeSource', this.state.inputs.newVideo)
   }
 
   syncButton = () =>{
@@ -231,6 +231,7 @@ export default class Room extends Component {
               variant="secondary" 
               onClick={()=>{
                 // * Trocar video
+                this.changeSourceButton()
                 this.dimissModal('newVideo')
               }}
             >
