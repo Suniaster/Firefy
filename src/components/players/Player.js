@@ -1,6 +1,6 @@
 import React from "react"
 import ReactPlayer from 'react-player'
-import '../../styles/room.css'
+import '../../styles/roomtest.css'
 import PlayerBase from "../../utils/PlayerBase"
 
 
@@ -56,20 +56,18 @@ export default class Player extends PlayerBase{
     render(){
         const { source, playing } = this.state
         return(
-            <div>
-                <div className="player-container">
-                    <ReactPlayer
-                        ref={ref => this.player = ref}
-                        url={source}
-                        controls={true}
-                        playing={playing}
-                        onPlay={this._handlePlay}
-                        onPause={this._handlePause}
-                        onSeek={this._handleSeek}
-                        width="80vw"
-                        height="80vh"
-                    />
-                </div>
+            <div className="player-container">
+                <ReactPlayer
+                    ref={ref => this.player = ref}
+                    url={source}
+                    controls={true}
+                    playing={playing}
+                    onPlay={this._handlePlay}
+                    onPause={this._handlePause}
+                    onSeek={this._handleSeek}
+                    width="100%"
+                    height="100%"
+                />
             </div>
         )
     }

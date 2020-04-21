@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Crow from '../assets/images/crown.png'
 import Chapeu from '../assets/images/chapeu.png'
+import '../styles/roomtest.css'
 
 
 export default class UserContainer extends Component{
@@ -58,14 +59,14 @@ export default class UserContainer extends Component{
             let user = this.state.users[userId]
             let img = user.host ? Crow : Chapeu
             return (
-                <div style={{display:"flex", flexDirection: "column", alignItems:"center", marginLeft: "5px", marginRight: "5px"}} id={user.id}>
-                    <img src={img} alt="user" style={{width: '50px', paddingBottom:"10px"}}></img>
+                <div className="user-wrapper" id={user.id}>
+                    <img src={img} alt="user" style={{width: '80px', marginBottom: "8px"}}></img>
                     <span style={{color:"white", fontSize:"10px"}}>{user.name}</span>
                 </div>
             )
         })
         return(
-            <div style={{display: "flex", alignItems:"center", justifyContent:"center", height: "10vh", overflow:'auto'}}>
+            <div className="users-container">
                {listOfUsers}
             </div>
         )

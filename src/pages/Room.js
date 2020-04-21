@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import Header from '../components/Header'
 
-import '../styles/room.css'
+import '../styles/roomtest.css'
 
 import io from 'socket.io-client'
 import Chat from '../components/Chat';
@@ -116,68 +116,75 @@ export default class Room extends Component {
   render(){
     const {socket, isHost, defaultPlayer, showNameModal, changeNameButtonDisabled} = this.state
     return (
+      <div>
+
       <div className="room-container">
-        <Header/>
-        <div className="video-chat-container">
-          <div className="video-container">
-            {((socket!==undefined) && defaultPlayer) && (
-              <Player 
-                socket={socket} 
-                ref={(ref)=> this.defaultPlayer = ref} 
-                onPlay={this._onStartHandler} 
-                onPause={this._onPauseHandler} 
-              />
-            )}
-            {((socket!==undefined) && !defaultPlayer) && ( 
-              <AnimePlayer 
-                socket={socket} 
-                ref={(ref)=> this.animePlayer = ref}  
-                onPlay={this._onStartHandler} 
-                onPause={this._onPauseHandler} 
-              /> 
-            )}
-            {isHost && <div className="host_div">Você é o host</div>}
-            <div className="connected-container">
-              {(socket!== undefined) && (
-                <UserContainer socket={socket}/>
+        <Header>
+        <div className="room-wrapper">
+          <div className="content-container">
+            <div className="play-wrapper">
+              {((socket!==undefined) && defaultPlayer) && (
+                <Player 
+                  socket={socket} 
+                  ref={(ref)=> this.defaultPlayer = ref} 
+                  onPlay={this._onStartHandler} 
+                  onPause={this._onPauseHandler} 
+                />
+              )}
+              {((socket!==undefined) && !defaultPlayer) && ( 
+                <AnimePlayer 
+                  socket={socket} 
+                  ref={(ref)=> this.animePlayer = ref}  
+                  onPlay={this._onStartHandler} 
+                  onPause={this._onPauseHandler} 
+                /> 
               )}
             </div>
+            {/* {isHost && <div className="host_div">Você é o host</div>} */}
+            <div>
+                {(socket!== undefined) && (
+                  <UserContainer socket={socket}/>
+                )}
+            </div>
           </div>
-          <div style={{height:"100%", width:"100%"}}>
+
+        <div className="control-container">
+          <div className="room-title-wrapper">Nome da Sala</div>
+
             {(socket!== undefined) && (
-              <Chat
-                roomName={this.roomName}
-                hostName={this.hostName}
-                socket={socket}
-              />
-            )}
+                <Chat
+                  roomName={this.roomName}
+                  hostName={this.hostName}
+                  socket={socket}
+                />
+              )}
 
-            <div className="control-container">
-
-              <input 
-                type="text" 
-                placeholder="URL"
-                value={this.state.newSourceInput} 
-                onChange={(e)=>this.setState({newSourceInput: e.target.value})} 
-              />
-
-              <div className="button-container">
-                <button onClick={this.changeSourceButton}>
-                    Trocar vídeo
+          {/* <input 
+            type="text" 
+            placeholder="URL"
+            value={this.state.newSourceInput} 
+            onChange={(e)=>this.setState({newSourceInput: e.target.value})} 
+          /> */}
+          <div className="all-button-container">
+            <div className="button-smaller-container">
+                <button className="button-smaller">Queue</button>
+                <button className="button-smaller">Room Link</button>
+                <button className="button-smaller" onClick={this.syncButton}>
+                    Syncronize
                 </button>
-                <button onClick={this.syncButton}>
-                    Sincronizar
-                </button>
-                <Button variant="light"
-                  onClick={this.showModal}
-                  disabled={changeNameButtonDisabled}
-                >
-                    Change nick
-                </Button>
-              </div>
+            </div>
+            <div className="button-bigger-container">
+
+              <button className="button-bigger-red"onClick={this.changeSourceButton}>
+                  Add video
+              </button>
+              <button className="change-avatar"/>
             </div>
           </div>
         </div>
+      </div>
+      </Header>
+    </div>
 
         <Modal show={showNameModal} onHide={this.dimissModal} animation={false}>
           <Modal.Header>
@@ -210,6 +217,7 @@ export default class Room extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
+
       </div>
     );
   }

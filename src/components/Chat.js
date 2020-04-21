@@ -1,5 +1,5 @@
 import React, {  Component} from 'react'
-import '../styles/chat.css'
+import '../styles/roomtest.css'
 export default class Chat extends Component{
 
     constructor({roomName, hostName, socket}){
@@ -28,18 +28,16 @@ export default class Chat extends Component{
     render(){
         return (
             <div className="chat-container">
-              <div className="messages-container">
+              <div>
                 {this.state.messages.map((message)=>(
                     <div className="message">
                       <span className="message-user">{message.id}:</span> <span className="message-text">{message.text}</span>
                     </div>
                 ))}
               </div>
-              <div>
                 <input 
-                  className="chat-input"
                   type="text" 
-                  placeholder="Digite Mensagem" 
+                  placeholder="Say something..." 
                   value={this.state.inputText} 
                   onChange={(e)=>this.setState({inputText: e.target.value})} 
                   onKeyDown={(e)=>{
@@ -49,7 +47,6 @@ export default class Chat extends Component{
                     } 
                   }}
                 />
-              </div>
             </div>
         )
     }
