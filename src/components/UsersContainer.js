@@ -4,6 +4,7 @@ import Chapeu from '../assets/images/chapeu.png'
 import Sasuke from '../assets/images/sasuke2fofo.jpg'
 import '../styles/roomtest.css'
 
+import {Button, Popover, OverlayTrigger} from 'react-bootstrap'
 
 export default class UserContainer extends Component{
 
@@ -13,7 +14,7 @@ export default class UserContainer extends Component{
 
 
         this.state = {
-            users:{}
+            users:{},
         }
     }
 
@@ -59,14 +60,32 @@ export default class UserContainer extends Component{
         let listOfUsers = Object.keys(this.state.users).map((userId)=>{
             let user = this.state.users[userId]
             let img = user.host ? Crow : Chapeu
+            
+            let changeHostDisabled = this.props.isHost ? 'auto' : 'none'
+        
             let border_color = user.host ? '#EAB100' : '#D4DCE8';
             return (
-                <div className="user-wrapper" id={user.id}>
-                    <div className="avatar-wrapper" style={{borderColor: border_color}}>
-                        <img src={Sasuke} alt="user"></img>
+                <OverlayTrigger
+                trigger={["click"]}
+                placement="top"
+                rootClose={true}
+                id={user.id}
+                overlay={
+                  <Popover>
+                    <Popover.Content>
+                        <Button>
+                            Pass Host
+                        </Button>
+                    </Popover.Content>
+                  </Popover>
+                }>
+                    <div className="user-wrapper" style={{ pointerEvents: changeHostDisabled }}>
+                        <div className="avatar-wrapper" style={{borderColor: border_color}}>
+                            <img src={Sasuke} alt="user"></img>
+                        </div>
+                        <span>{user.name}</span>
                     </div>
-                    <span>{user.name}</span>
-                </div>
+                </OverlayTrigger>
             )
         })
         return(
