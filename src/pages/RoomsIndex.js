@@ -29,9 +29,9 @@ class RoomIndex extends Component{
     }
     render = () =>{
         
-        const rooms = this.state.rooms.map(({roomId, userCount})=>{
+        const rooms = this.state.rooms.map((props)=>{
             return (
-                <RoomList roomId={roomId} userCount={userCount}/>
+                <RoomList {...props} />
             )
         })
         return(
