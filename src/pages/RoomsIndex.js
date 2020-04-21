@@ -3,8 +3,6 @@ import api from '../services/api'
 import { Button } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
 
-import '../styles/rooms.css'
-import '../styles/chat.css'
 import RoomList from '../components/RoomList';
 
 class RoomIndex extends Component{
