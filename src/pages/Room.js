@@ -8,7 +8,7 @@ import Chat from '../components/Chat';
 import Player from '../components/players/Player';
 import AnimePlayer from '../components/players/AnimePlayer'
 import ReactPlayer from 'react-player';
-import {Modal, Button} from 'react-bootstrap'
+import {Modal, Button, Overlay, Tooltip} from 'react-bootstrap'
 import UserContainer from '../components/UsersContainer';
 // import AdSense from 'react-adsense';
 
@@ -42,9 +42,13 @@ export default class Room extends Component {
       modals:{
         newVideo: false,
         queue: false
+      },
+      overlays:{
+        clipboard: false
       }
-
     }
+
+    this.overlayClipboardRef = React.createRef()
   }
 
   componentDidMount(){
@@ -188,15 +192,26 @@ export default class Room extends Component {
                   Queue
                 </button>
       
+                
                 <Clipboard 
                   className="button-smaller" 
-                  button-href="#" 
+                  button-href="#"
                   data-clipboard-text={this.href}
-                  onSuccess={()=>{alert("Copied to clipboard")}}
+                  onSuccess={()=>{
+                    this.setState({overlays: {clipboard: true}})
+                    setTimeout( () => {this.setState({overlays: {clipboard: false}}); }, 2000);
+                  }}
                   >
-                  Room Link
+                    <div ref={this.overlayClipboardRef}>Room Link</div>
                 </Clipboard>
-              
+                <Overlay target={this.overlayClipboardRef.current} show={this.state.overlays.clipboard} placement="left">
+                  {(props) => (
+                    <Tooltip id="overlay-example" {...props}>
+                      Copied to clipboard
+                    </Tooltip>
+                  )}
+                </Overlay>
+               
                 <button className="button-smaller" onClick={this.syncButton}>
                     Syncronize
                 </button>
