@@ -16,7 +16,7 @@ class RoomIndex extends Component{
     }
 
     componentDidMount(){
-        api.get('/room').then((res)=>{
+        api.get('/rooms').then((res)=>{
             let rooms = res.data
             this.setState({rooms: rooms})
         })
