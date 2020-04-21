@@ -13,22 +13,20 @@ export default class LoadRoom extends Component{
 
         this.state = {
             loading: true,
-            problem: false
+            problem: false,
+            errorMessage: ''
         }
     }
 
     componentDidMount(){
-        api.get('/room').then((res)=>{
-            let rooms = res.data
-            if(this.listIncludes(rooms, this.roomId))
-                this.setState({problem: false})
-            else
-                this.setState({problem: true})
-            this.setState({loading: false})
+        api.get('/room/enter/'+this.roomId).then((res)=>{
+            this.setState({problem: false,loading: false})
         }).catch((err)=>{
+            const { message } = err.response.data
             this.setState({
                 problem: true,
-                loading: false
+                loading: false,
+                errorMessage: message
             })
         })
     }
@@ -42,10 +40,10 @@ export default class LoadRoom extends Component{
     }
 
     render(){
-        const {loading, problem} = this.state
+        const {loading, problem, errorMessage} = this.state
         return(
             <div>
-                {(!loading && problem ) && <h1 style={{color: "white"}}>Sala {this.roomId} não existe</h1>}
+                {(!loading && problem ) && <h1 style={{color: "white"}}>{errorMessage}</h1>}
                 {(!loading && !problem) && <Room roomId={this.roomId}/> }
                 {loading && <h1>Carregando</h1>}
             </div>

@@ -53,6 +53,10 @@ export default class Room extends Component {
     this.initializeName()
   }
 
+  componentWillUnmount(){
+    this.socket.close();
+  }
+
   __syncPlayer = (videoInfo) =>{
     const useDefault = ReactPlayer.canPlay(videoInfo.source)
     this.setState({defaultPlayer: useDefault})

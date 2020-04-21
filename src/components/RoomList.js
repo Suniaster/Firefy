@@ -8,6 +8,7 @@ const RoomList = (props) => {
 
     let roomId = props.roomId
     let user_count =  props.userCount || 0
+    let max_capacity =  props.maxCapacity || 99
     return (
         <div className="room-list">
             <div className="icon-container">
@@ -15,7 +16,7 @@ const RoomList = (props) => {
                     <FontAwesomeIcon icon={faUser} />
                 </div>
                 <div>
-                    {user_count}/99
+                    {user_count}/{max_capacity}
                 </div>
             </div>
             <div>
