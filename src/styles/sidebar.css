@@ -1,5 +1,6 @@
 .sidebar-container {
     position: absolute;
+    z-index: 299;
     left: 0;
     top: 0;
     width: 220px;

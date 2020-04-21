@@ -26,7 +26,6 @@
 }
  
 .header-container button {
-    z-index: 300;
     display:block;
     height: 35px;
     width: 35px;
