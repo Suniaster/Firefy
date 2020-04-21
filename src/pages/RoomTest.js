@@ -113,7 +113,7 @@ export default class Room extends Component {
     const {socket, isHost, defaultPlayer, showNameModal, changeNameButtonDisabled} = this.state
     return (
       <div className="room-container">
-        <Header/>
+        <Header>
         <div className="video-chat-container">
           <div className="video-container">
             {((socket!==undefined) && defaultPlayer) && (
@@ -206,6 +206,7 @@ export default class Room extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
+        </Header>
       </div>
     );
   }
