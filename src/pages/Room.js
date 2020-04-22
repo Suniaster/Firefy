@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import Header from '../components/Header'
 
-import '../styles/roomtest.css'
+import '../styles/room.css'
 
 import io from 'socket.io-client'
 import Chat from '../components/Chat';

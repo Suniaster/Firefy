@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/roomtest.css'
+import '../../styles/room.css'
 
 import 'video-react/dist/video-react.css'
 import { Player } from 'video-react';
