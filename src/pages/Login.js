@@ -67,6 +67,7 @@ class Login extends Component {
                         clientId="388056154502-gorkj09682qam2losvcr3psmh7v7mjm6.apps.googleusercontent.com"
                         buttonText="Login with Google"
                         onSuccess={this._handlesuccess}
+                        onFailure={()=>{}}
                     />
                     </div>
                     <div className="ellipse"></div>
