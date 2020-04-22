@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
 
 import RoomList from '../components/RoomList';
-
+import Header from '../components/Header'
 class RoomIndex extends Component{
 
     constructor(props){
@@ -41,6 +41,7 @@ class RoomIndex extends Component{
             )
         })
         return(
+            <Header>
             <div className="main-container">
                 <div>
                     <input 
@@ -59,6 +60,7 @@ class RoomIndex extends Component{
                 </div>
                
             </div>
+            </Header>
         )
     }
 }
