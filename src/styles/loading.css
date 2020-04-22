@@ -1,0 +1,23 @@
+.logo-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-animation{
+    animation-name: adwdwa;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes adwdwa{
+    from {
+        width: 100%;
+    }
+    to {
+        width: 95%;
+    }
+}

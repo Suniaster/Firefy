@@ -28,7 +28,7 @@ class Login extends Component {
         return(
             <div>
                 Login
-                <div>
+                <div style={{marginTop:"100px", marginLeft: "100px"}}>
                     <GoogleLogin
                         clientId="388056154502-gorkj09682qam2losvcr3psmh7v7mjm6.apps.googleusercontent.com"
                         buttonText="Login with Google"

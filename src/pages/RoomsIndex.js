@@ -42,6 +42,7 @@ class RoomIndex extends Component{
         })
         return(
             <Header>
+            <div style={{height: "1px", backgroundColor: "rgb(10, 11, 24)"}}></div>
             <div className="main-container">
                 <div>
                     <input 
