@@ -4,7 +4,7 @@ import { GoogleLogin } from 'react-google-login';
 import api from '../services/api';
 
 
-import '../styles/Login.css'
+import '../styles/login.css'
 import { FaBars, FaArrowLeft } from 'react-icons/fa'
 
 import Logo from '../assets/logov2.svg'
