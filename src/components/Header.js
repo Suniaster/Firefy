@@ -51,7 +51,7 @@ export default function Header({children}) {
                 </div>
             </CSSTransition>
             {/* {menuClick && <Sidebar/>} */}
-            <div>
+            <div style={{width: "100%"}}>
                 {children}
             </div>
         </div>
