@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Route } from "react-router-dom";
 import api from '../services/api';
 import Loading from '../components/Loading';
-import '../styles/UserLoggedOnly.css'
+import '../styles/FadeSwitch.css'
 import {  CSSTransition, SwitchTransition } from "react-transition-group";
 
 export class ProtectedUserRoute extends Component{
