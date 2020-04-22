@@ -4,7 +4,7 @@
     left: -220px;
     top: 0;
     width: 220px;
-    height: calc( 100vh );
+    height: calc(100vh - 50px );
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
