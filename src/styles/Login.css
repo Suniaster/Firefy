@@ -122,8 +122,8 @@
     color: #9FA9FF;
 }
 .ellipse{
-    position: absolute;
-    bottom: -35vh;
+    position: relative;
+    bottom: -8vh;
     width: 110vw;
     left: -5vw;
     height: 50vh;
