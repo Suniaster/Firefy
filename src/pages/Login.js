@@ -3,6 +3,12 @@ import {  withRouter } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
 import api from '../services/api';
 
+
+import '../styles/Login.css'
+import { FaBars, FaArrowLeft } from 'react-icons/fa'
+
+import Logo from '../assets/logov2.svg'
+
 class Login extends Component {
 
     constructor(props){
@@ -26,17 +32,49 @@ class Login extends Component {
 
     render(){
         return(
-            <div>
-                Login
-                <div style={{marginTop:"100px", marginLeft: "100px"}}>
+            <div className="page-container">
+                <div className="header">
+                    <button>
+                        <FaArrowLeft/>
+                    </button>
+                </div>
+                <div className="login-body">
+                    <div className="companyLogin">
+                        <img src={Logo} alt="🔥" />
+                        <span>Firefy</span>
+                    </div>
+                    <div className="form-container">
+                        <input
+                         className="form-input"
+                         placeholder="Email"
+                        />
+                        <input
+                         className="form-input"
+                         placeholder="Password"
+                        />
+                    </div>
+
+                    <div className="buttonContainer">
+                       <button
+                        className="login-button"
+
+                        >
+                        Log in
+                        </button>
+                    </div>
+
+                    <div className="forgotPassword">
+                        <span>Forgot password?</span>
+                    </div>
+                    <div>
                     <GoogleLogin
                         clientId="388056154502-gorkj09682qam2losvcr3psmh7v7mjm6.apps.googleusercontent.com"
                         buttonText="Login with Google"
                         onSuccess={this._handlesuccess}
-                        onFailure={()=>{}}
-                    
-                        // cookiePolicy={'single_host_origin'}
+                        style={{width: "1000px"}}
                     />
+                    </div>
+                    <div className="ellipse"></div>
                 </div>
             </div>
         )

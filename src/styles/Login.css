@@ -1,0 +1,127 @@
+body{
+    overflow: hidden;
+}
+.page-container{
+    background-color: #1E1F35;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.header{
+    height: 3rem;
+    margin-top: 1rem;
+    margin-left: 2rem;
+}
+
+.header button{
+    z-index: 300;
+    display:block;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    background-color: Transparent;
+    transition: 0.2s;
+    align-items: center;
+}
+
+.header button:hover {
+    background-color: rgb(59, 60, 90);
+    border-radius: 50%;
+}
+
+.header button svg {
+    height: 1.2rem;
+    width: 1.2rem;
+    fill: #D4DCE8;
+    margin: auto;
+}
+
+.login-body{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.companyLogin{
+    margin-top: 3rem;
+    width:7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.companyLogin span{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-container input::placeholder{
+    font-style: italic;
+    color: #62676F;
+}
+
+.form-input{
+    align-self: center;
+    background: #171827;
+    width: 18rem;
+    min-height: 35px;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 0 1rem 0 20px;
+    color: rgb(155, 157, 161);
+    border: 0;
+    margin-bottom: 15px;
+    display: inline-block;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.buttonContainer button{
+    width: 10rem;
+    background: #9FA9FF;
+    color: #0E0F20;
+    margin: 1rem 15px 0.5rem 15px;
+}
+
+.login-button:hover{
+    background: rgb(121, 128, 194);
+    transition: 0.2s ease;
+}
+
+.login-button{
+    height: 35px;
+    line-height: 35px;
+    background: #1E1F35;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 15px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.forgotPassword{
+    margin-bottom: 2rem;
+    color: #9FA9FF;
+}
+.ellipse{
+    position: absolute;
+    width: 110vw;
+    left: -5vw;
+    bottom: -35vh;
+    height: 50vh;
+    border-radius: 50%;
+    background: linear-gradient(180deg, 
+        rgba(218, 0, 118, 0.9) 0.22%, 
+        rgba(14, 15, 32, 0) 35.61%);
+}
