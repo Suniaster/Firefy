@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 import '../styles/FadeSwitch.css'
 import {  CSSTransition, SwitchTransition } from "react-transition-group";
 
+
 export class ProtectedUserRoute extends Component{
 
     constructor({component, ...rest}){
@@ -54,7 +55,7 @@ export default class UserLoggedOnly extends Component{
                     >
                     <div>
                         {((load === 'loading') &&(
-                        <Loading />
+                            <Loading />
                         ))}
                         {((load === 'authorized') && (
                             <this.props.component />

@@ -3,6 +3,8 @@ import api from '../services/api'
 import Room from './Room'
 import Loading from '../components/Loading'
 
+import '../styles/FadeSwitch.css'
+import {  CSSTransition, SwitchTransition } from "react-transition-group";
 
 
 export default class LoadRoom extends Component{
@@ -13,21 +15,20 @@ export default class LoadRoom extends Component{
         this.roomId = href.substring(6)
 
         this.state = {
-            loading: true,
-            problem: false,
             errorMessage: '',
-            roomInfo: null
+            roomInfo: null,
+            load: ''
         }
     }
 
     componentDidMount(){
+        this.setState({load: 'loading'})
         api.get('/room/enter/'+this.roomId).then((res)=>{
-            this.setState({problem: false,loading: false, roomInfo: res.data})
+            this.setState({load: 'authorized', roomInfo: res.data})
         }).catch((err)=>{
             const { message } = err.response.data
             this.setState({
-                problem: true,
-                loading: false,
+                load: 'problem',
                 errorMessage: message
             })
         })
@@ -42,12 +43,28 @@ export default class LoadRoom extends Component{
     }
 
     render(){
-        const {loading, problem, errorMessage} = this.state
+        const {errorMessage, load} = this.state
         return(
             <div>
-                {(!loading && problem ) && <h1 style={{color: "white"}}>{errorMessage}</h1>}
-                {(!loading && !problem) && <Room {...this.state.roomInfo}/> }
-                {loading && <Loading/>}
+                <SwitchTransition>
+                    <CSSTransition
+                        key={load}
+                        addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+                        classNames='fade'
+                    >
+                    <div>
+                        {((load === 'loading') &&(
+                            <Loading />
+                        ))}
+                        {((load === 'authorized') && (
+                            <Room {...this.state.roomInfo}/>
+                        ))}
+                        {((load === 'problem') &&(
+                            <h1 style={{color: "white"}}>{errorMessage}</h1>
+                        ))}
+                    </div>
+                    </CSSTransition>
+                </SwitchTransition>
             </div>
         )
     }
