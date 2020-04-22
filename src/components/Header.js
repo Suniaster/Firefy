@@ -7,6 +7,8 @@ import Sidebar from './Sidebar'
 
 import Logo from '../assets/logov2.svg'
 
+import {  CSSTransition, SwitchTransition } from "react-transition-group";
+
 export default function Header({children}) {
     let history = useHistory()
 
@@ -38,8 +40,21 @@ export default function Header({children}) {
                 <FaArrowLeft/>
             </button>
         </header>
-        {menuClick && <Sidebar/>}
-        {children}
+        <div style={{display:"flex"}}>
+            <CSSTransition
+                in={menuClick}
+                addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+                classNames='sideBar'
+            >
+                <div className="sidebarr">
+                    <Sidebar/>
+                </div>
+            </CSSTransition>
+            {/* {menuClick && <Sidebar/>} */}
+            <div>
+                {children}
+            </div>
+        </div>
         </>
     )
 

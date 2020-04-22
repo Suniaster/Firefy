@@ -56,4 +56,37 @@ button:focus {
     margin: auto;
 }
 
+.sidebarr{
+    display: none;
+    opacity: 0;
+}
 
+.sideBar-enter {
+    opacity: 0;
+    display: inline;
+}
+
+.sideBar-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.sideBar-enter-done {
+    opacity: 1;
+    display: inline;
+}
+
+.sideBar-exit {
+    opacity: 1;
+    display: inline;
+}
+
+.sideBar-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.sideBar-exit-done{
+    display: none;
+    opacity: 0;
+}
