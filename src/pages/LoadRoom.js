@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import api from '../services/api'
 import Room from './Room'
+import Loading from '../components/Loading'
 
 
 
@@ -46,7 +47,7 @@ export default class LoadRoom extends Component{
             <div>
                 {(!loading && problem ) && <h1 style={{color: "white"}}>{errorMessage}</h1>}
                 {(!loading && !problem) && <Room {...this.state.roomInfo}/> }
-                {loading && <h1>Carregando</h1>}
+                {loading && <Loading/>}
             </div>
         )
     }
