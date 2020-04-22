@@ -42,9 +42,10 @@ body{
 
 .login-body{
     display: flex;
-    height: 100%;
+    height: calc( 100% - 30vh );
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .companyLogin{
@@ -124,10 +125,11 @@ body{
 }
 .ellipse{
     position: absolute;
-    width: 110vw;
-    left: -5vw;
-    bottom: -35vh;
-    height: 50vh;
+    bottom: -20vw;
+    width: 120vw;
+    left: -10vw;
+    /* bottom: 0vh; */ 
+    height: 30vw;
     border-radius: 50%;
     background: linear-gradient(180deg, 
         rgba(218, 0, 118, 0.9) 0.22%, 

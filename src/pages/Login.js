@@ -74,8 +74,8 @@ class Login extends Component {
                         style={{width: "1000px"}}
                     />
                     </div>
-                    <div className="ellipse"></div>
                 </div>
+                <div className="ellipse"></div>
             </div>
         )
     }
