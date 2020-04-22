@@ -1,10 +1,14 @@
 body{
     overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .page-container{
     background-color: #1E1F35;
     overflow: hidden;
     height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .header{
@@ -49,7 +53,6 @@ body{
 }
 
 .companyLogin{
-    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -125,11 +128,10 @@ body{
 }
 .ellipse{
     position: absolute;
-    bottom: -20vw;
-    width: 120vw;
-    left: -10vw;
-    /* bottom: 0vh; */ 
-    height: 30vw;
+    bottom: -35vh;
+    width: 110vw;
+    left: -5vw;
+    height: 50vh;
     border-radius: 50%;
     background: linear-gradient(180deg, 
         rgba(218, 0, 118, 0.9) 0.22%, 
