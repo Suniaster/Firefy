@@ -1,7 +1,7 @@
 .sidebar-container {
     position: absolute;
     z-index: 299;
-    left: 0;
+    left: -220px;
     top: 0;
     width: 220px;
     height: calc( 100vh );

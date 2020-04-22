@@ -56,37 +56,29 @@ button:focus {
     margin: auto;
 }
 
-.sidebarr{
-    display: none;
-    opacity: 0;
-}
 
 .sideBar-enter {
-    opacity: 0;
-    display: inline;
+    transform: translateX(0)
 }
 
 .sideBar-enter-active {
-    opacity: 1;
-    transition: opacity 500ms;
+    transform: translateX(220px);
+    transition: transform 500ms;
 }
 
 .sideBar-enter-done {
-    opacity: 1;
-    display: inline;
+    transform: translateX(220px);
 }
 
 .sideBar-exit {
-    opacity: 1;
-    display: inline;
+    transform: translateX(220px);
 }
 
 .sideBar-exit-active {
-    opacity: 0;
-    transition: opacity 500ms;
+    transform: translateX(0px);
+    transition: transform 500ms;
 }
 
 .sideBar-exit-done{
-    display: none;
-    opacity: 0;
+    transform: translateX(0px);
 }

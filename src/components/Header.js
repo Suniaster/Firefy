@@ -46,7 +46,7 @@ export default function Header({children}) {
                 addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
                 classNames='sideBar'
             >
-                <div className="sidebarr">
+                <div>
                     <Sidebar/>
                 </div>
             </CSSTransition>
