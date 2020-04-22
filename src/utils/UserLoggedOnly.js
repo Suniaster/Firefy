@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import { Route } from "react-router-dom";
 import api from '../services/api';
+import Loading from '../components/Loading';
+import '../styles/UserLoggedOnly.css'
+import {  CSSTransition, SwitchTransition } from "react-transition-group";
 
 export class ProtectedUserRoute extends Component{
 
@@ -22,37 +25,46 @@ export default class UserLoggedOnly extends Component{
         super(props)
 
         this.state = {
-            loading: true,
-            authenticated: false
+            load: ''
         }
     }
 
     componentDidMount(){
         const token = localStorage.getItem("@user-auth-token")
-        
+        this.setState({load: 'loading'})
         api.get('/user/auth', {headers: {'x-access-token': token}}).then((res)=>{
             let body = res.data
             if(body.auth){
-                this.setState({authenticated: true, loading: false})
+                this.setState({load: 'authorized'})
             }
         }).catch(()=>{
-            this.setState({loading: false})
+            this.setState({load: 'problem'})
         })
     }
 
     render(){
-        const {loading, authenticated} = this.state
+        const {load} = this.state
         return (
             <div>
-                {(loading && (
-                    <h1> LOADING....</h1>
-                ))}
-               {((!loading && authenticated) && (
-                    <this.props.component />
-                ))}
-                {((!loading && !authenticated) &&(
-                    <div>{this.props.history.push('/login')}</div>
-                ))}
+                <SwitchTransition>
+                    <CSSTransition
+                        key={load}
+                        addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+                        classNames='fade'
+                    >
+                    <div>
+                        {((load === 'loading') &&(
+                        <Loading />
+                        ))}
+                        {((load === 'authorized') && (
+                            <this.props.component />
+                        ))}
+                        {((load === 'problem') &&(
+                            <div>{this.props.history.push('/login')}</div>
+                        ))}
+                    </div>
+                    </CSSTransition>
+                </SwitchTransition>
             </div>
         )
     }
