@@ -5,15 +5,11 @@ import api from '../services/api';
 
 
 import '../styles/Login.css'
-import { FaBars, FaArrowLeft } from 'react-icons/fa'
+import { FaArrowLeft } from 'react-icons/fa'
 
 import Logo from '../assets/logov2.svg'
 
 class Login extends Component {
-
-    constructor(props){
-        super(props);
-    }
 
     _handlesuccess = (response) =>{
         const token_id = response.tokenId
@@ -71,7 +67,6 @@ class Login extends Component {
                         clientId="388056154502-gorkj09682qam2losvcr3psmh7v7mjm6.apps.googleusercontent.com"
                         buttonText="Login with Google"
                         onSuccess={this._handlesuccess}
-                        style={{width: "1000px"}}
                     />
                     </div>
                     <div className="ellipse"></div>
