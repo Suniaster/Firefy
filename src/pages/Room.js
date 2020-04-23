@@ -159,7 +159,8 @@ export default class Room extends Component {
                 /> 
               )}
             </div>
-            <div style={{height: "100%"}}>
+            {/* <div style={{height: "100%"}}> */}
+            <div>
                 {(socket!== undefined) && (
                   <UserContainer socket={socket}/>
                 )}
