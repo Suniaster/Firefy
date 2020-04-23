@@ -1,0 +1,13 @@
+$background: #292A3E;
+$backgroundDarker: rgb(35, 36, 53);
+
+.room-modal-background{
+    background-color: $background;
+    border-color: $background;
+}
+
+.room-modal-header{
+    background-color: $backgroundDarker;
+    border-color: $backgroundDarker;
+    
+}
