@@ -58,7 +58,12 @@ export default class Room extends Component {
   }
 
   componentDidMount(){
-    this.socket = io.connect(this.hostName + this.roomName)
+    let user = JSON.parse(localStorage.getItem("@user-info")).user
+    if(user.username)
+      this.socket = io.connect(this.hostName + this.roomName, {query: 'username='+user.username})
+    else {
+      this.socket = io.connect(this.hostName + this.roomName)
+    }
     this.setState({
       socket: this.socket
     })
