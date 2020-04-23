@@ -11,13 +11,10 @@ export default function Loading (props){
             flexDirection:"column", 
             alignItems:"center",
             justifyContent:"center",
-            height: "70vh"
+            height: "100vh"
         }}>
-            <div style={{width: "100px", height: "150px"}}>
+            <div style={{width: "80px"}}>
                 <LogoPulse />
-            </div>
-            <div style={{width: "100px",textAlign:"center"}}>
-                Loading...
             </div>
         </div>
     )
