@@ -33,7 +33,6 @@ export default class Room extends Component {
     
     this.state = {
       socket: undefined,
-      isHost: false,
       defaultPlayer: true,
       newSourceInput: '',
       inputs:{
@@ -49,6 +48,13 @@ export default class Room extends Component {
     }
 
     this.overlayClipboardRef = React.createRef()
+
+    /// constantes com referencia de cada player
+    this.defaultPlayer = React.createRef()
+    this.animePlayer = React.createRef()
+
+    /// Variavel para trocar player
+    this.player = React.createRef()
   }
 
   componentDidMount(){
@@ -58,9 +64,8 @@ export default class Room extends Component {
     })
 
     this.socket.on('sync', this.__syncPlayer)
-    this.socket.on('getHostInfo', this.__getHostInfo)
-
-    this.initializeName()
+    this.socket.on('getOwnerInfo', this.__getOwnerInfo)
+    this.socket.emit("syncMe")
   }
 
   componentWillUnmount(){
@@ -70,13 +75,13 @@ export default class Room extends Component {
   __syncPlayer = (videoInfo) =>{
     const useDefault = ReactPlayer.canPlay(videoInfo.source)
     this.setState({defaultPlayer: useDefault})
-    this.player  = useDefault ? this.defaultPlayer : this.animePlayer
+    this.player = useDefault ? this.defaultPlayer : this.animePlayer
     
     this.player.sync(videoInfo)
   }
 
-  __getHostInfo = (id) =>{
-    this.socket.emit("sendInfoServer",  this.player.videoInfo(), id)
+  __getOwnerInfo = (id) =>{
+    this.socket.emit("sendOwnerInfoFor",  this.player.videoInfo(), id)
   }
 
   _onPauseHandler = () => {
@@ -140,7 +145,7 @@ export default class Room extends Component {
               {((socket!==undefined) && defaultPlayer) && (
                 <Player 
                   socket={socket} 
-                  ref={(ref)=> this.defaultPlayer = ref} 
+                  ref={(ref)=> {this.player = ref;this.defaultPlayer = ref}} 
                   onPlay={this._onStartHandler} 
                   onPause={this._onPauseHandler} 
                 />
@@ -148,13 +153,12 @@ export default class Room extends Component {
               {((socket!==undefined) && !defaultPlayer) && ( 
                 <AnimePlayer 
                   socket={socket} 
-                  ref={(ref)=> this.animePlayer = ref}  
+                  ref={(ref)=> {this.player = ref ; this.animePlayer = ref}}  
                   onPlay={this._onStartHandler} 
                   onPause={this._onPauseHandler} 
                 /> 
               )}
             </div>
-            {/* {isHost && <div className="host_div">Você é o host</div>} */}
             <div>
                 {(socket!== undefined) && (
                   <UserContainer socket={socket}/>
@@ -164,7 +168,6 @@ export default class Room extends Component {
 
         <div className="control-container">
           <div className="room-title-wrapper">Sala: {this.props.roomId}</div>
-
             {(socket!== undefined) && (
                 <Chat
                   roomName={this.roomName}
@@ -172,13 +175,6 @@ export default class Room extends Component {
                   socket={socket}
                 />
               )}
-
-          {/* <input 
-            type="text" 
-            placeholder="URL"
-            value={this.state.newSourceInput} 
-            onChange={(e)=>this.setState({newSourceInput: e.target.value})} 
-          /> */}
           <div className="all-button-container">
             <div className="button-smaller-container">
                 <button 
@@ -207,7 +203,6 @@ export default class Room extends Component {
                     </Tooltip>
                   )}
                 </Overlay>
-               
                 <button className="button-smaller" onClick={this.syncButton}>
                     Syncronize
                 </button>

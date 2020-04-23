@@ -23,12 +23,13 @@ export default class AnimePlayer extends PlayerBase{
     this.changePlaybackRateRate = this.changePlaybackRateRate.bind(this);
     this.changeVolume = this.changeVolume.bind(this);
     this.setMuted = this.setMuted.bind(this);
+
+    this.dontSendNextMessage = false
   }
 
   componentDidMount(){
     // subscribe state change
     this.player.subscribeToStateChange(this.handleStateChange.bind(this));
-    this.socket.emit('getServerVideoInfo')
   }
   sync = (videoInfo) =>{
     const {player} = this.player.getState()
@@ -42,6 +43,12 @@ export default class AnimePlayer extends PlayerBase{
     if( currentTime < videoInfo.time - this.acceptedLagTime
         || currentTime > videoInfo.time + this.acceptedLagTime ){
       this.player.seek(videoInfo.time)
+    }
+
+    // Do not send next message because this change will trigger
+    // onPlay/onPause events if state changes 
+    if(videoInfo.paused !== player.paused){
+      this.dontSendNextMessage = true
     }
 
     if((!videoInfo.paused)) 
@@ -58,16 +65,34 @@ export default class AnimePlayer extends PlayerBase{
       if(player.paused !== prevState.player.paused){
         //Player has been paused
         if(player.paused){
-          this.props.onPause()
+          this._handlePause()
         }
         //Player has been started
         else{
-          this.props.onPlay()
+          this._handlePlay()
         }
       }
     }
     if(player.error){
       // Do something
+    }
+  }
+
+  _handlePlay(){
+    if(this.dontSendNextMessage){
+      this.dontSendNextMessage = false
+    }
+    else{
+      this.props.onPlay()
+    }
+  }
+
+  _handlePause(){
+    if(this.dontSendNextMessage){
+      this.dontSendNextMessage = false
+    }
+    else{
+      this.props.onPause()
     }
   }
 
@@ -147,7 +172,7 @@ export default class AnimePlayer extends PlayerBase{
             ref={player => {
                 this.player = player;
             }}
-            autoPlay={false}
+            autoPlay={true}
             fluid={false}
             width={"100%"}
             height={"100%"}

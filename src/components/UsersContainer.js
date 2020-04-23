@@ -15,7 +15,7 @@ export default class UserContainer extends Component{
 
         this.state = {
             users:{},
-            isHost: false
+            role: 'Watcher'
         }
     }
 
@@ -28,7 +28,7 @@ export default class UserContainer extends Component{
                 newList[user.id] = {
                     id: user.id,
                     name: user.name,
-                    host: user.host
+                    role: user.role
                 }
             })
             this.setState({users: newList})
@@ -46,12 +46,6 @@ export default class UserContainer extends Component{
         this.socket.on("updateUser", (user)=>{
             this.updateUser(user)
         })
-        this.socket.on("ureHost", ()=>{
-            this.setState({isHost: true})
-        })
-        this.socket.on("lostHost", ()=>{
-            this.setState({isHost: false})
-        })
     }
 
     updateUser(userInfo){
@@ -59,7 +53,7 @@ export default class UserContainer extends Component{
         newList[userInfo.id] = {
             id: userInfo.id,
             name: userInfo.name,
-            host: userInfo.host
+            role: userInfo.role
         }
         this.setState({users: newList})
     }
@@ -67,12 +61,20 @@ export default class UserContainer extends Component{
 
     render(){
         let listOfUsers = Object.keys(this.state.users).map((userId)=>{
-            let user = this.state.users[userId]
-            let img = user.host ? Crow : Chapeu
-            
-            let changeHostDisabled = this.state.isHost ? 'auto' : 'none'
-
-            let border_color = user.host ? '#EAB100' : '#D4DCE8';
+            let user = this.state.users[userId];
+            let img;
+            if(user.role === "Watcher"){
+                img = Sasuke;
+            }
+            else{
+                if(user.role === "Moderator"){
+                    img = Chapeu;
+                }
+                else{
+                    img = Crow
+                }
+            }
+            let border_color = user.role === "Owner" ? '#EAB100' : '#D4DCE8';
             return (
                 <OverlayTrigger
                 trigger={["click"]}
@@ -82,15 +84,15 @@ export default class UserContainer extends Component{
                 overlay={
                   <Popover>
                     <Popover.Content>
-                        <Button onClick={()=>this.socket.emit("changeHost", {newHostId: user.id})}>
-                            Pass Host
+                        <Button onClick={()=>this.socket.emit("changeRole", {userId: user.id, role: 'Moderator'})}>
+                            Give Moderator
                         </Button>
                     </Popover.Content>
                   </Popover>
                 }>
-                    <div className="user-wrapper" style={{ pointerEvents: changeHostDisabled }}>
+                    <div className="user-wrapper" style={{ pointerEvents: 'auto' }}> {/*none para desabilitar*/}
                         <div className="avatar-wrapper" style={{borderColor: border_color}}>
-                            <img src={Sasuke} alt="user"></img>
+                            <img src={img} alt="user"></img>
                         </div>
                         <span>{user.name}</span>
                     </div>

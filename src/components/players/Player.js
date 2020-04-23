@@ -9,13 +9,13 @@ export default class Player extends PlayerBase{
         super(props)
         this.state = {
             source: 'https://www.youtube.com/watch?v=BkPpgMwPss0',
-            playing: false,
+            playing: true,
             inputText: ''
         }
+        this.dontSendNextMessage = false
     }
 
     componentDidMount(){
-        this.socket.emit('getServerVideoInfo')
     }
 
     sync = (videoInfo)=> {
@@ -28,7 +28,13 @@ export default class Player extends PlayerBase{
             || currentTime > videoInfo.time + this.acceptedLagTime ){
               this.seek(videoInfo.time)
         }
-        this.setState({playing: !videoInfo.paused });
+
+        // Do not send next message because this change will trigger
+        // onPlay/onPause events if state changes 
+        if(this.state.playing !== !videoInfo.paused){
+            this.dontSendNextMessage = true
+            this.setState({playing: !videoInfo.paused });
+        }
     }
 
     videoInfo(){
@@ -41,12 +47,24 @@ export default class Player extends PlayerBase{
 
     _handlePlay = () => {
         this.setState({playing: true})
-        this.props.onPlay()
+
+        if(this.dontSendNextMessage){
+            this.dontSendNextMessage = false
+        }
+        else{
+            this.props.onPlay()
+        }
     }
 
     _handlePause = ()=>{
         this.setState({playing: false})
-        this.props.onPause()
+        
+        if(this.dontSendNextMessage){
+            this.dontSendNextMessage = false
+        }
+        else{
+            this.props.onPause()
+        }
     }
 
     seek(seconds){
