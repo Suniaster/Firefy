@@ -166,7 +166,6 @@ export default class AnimePlayer extends PlayerBase{
 
   render(){
     return(
-      <div>
         <div className="player-container">
           <Player
             ref={player => {
@@ -180,7 +179,6 @@ export default class AnimePlayer extends PlayerBase{
             <source src={this.state.source} />
           </Player>
         </div>
-      </div>
     )
   }
 }
