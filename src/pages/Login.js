@@ -11,12 +11,22 @@ import Logo from '../assets/logov2.svg'
 
 class Login extends Component {
 
+
+    _anonymousLogin = () => {
+        api.post("/user/anonymous/login").then((res)=>{
+            const {token, user} = res.data
+            localStorage.setItem("@user-info", JSON.stringify(user))
+            localStorage.setItem("@user-auth-token", token)
+            this.props.history.push("/rooms");
+        })
+    }
+
     _handlesuccess = (response) =>{
         const token_id = response.tokenId
 
         api.post('/user/google/login', {token_id}).then((res)=>{
             let token = res.data.token
-            localStorage.setItem("@user-info", JSON.stringify(res.data))
+            localStorage.setItem("@user-info", JSON.stringify(res.data.user))
             localStorage.setItem("@user-auth-token", token)
             
             this.props.history.push("/rooms");
@@ -56,6 +66,13 @@ class Login extends Component {
 
                         >
                         Log in
+                        </button>
+
+                        <button
+                        className="login-button"
+                        onClick={this._anonymousLogin}
+                        >
+                        Enter as anonymous
                         </button>
                     </div>
 

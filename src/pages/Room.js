@@ -25,8 +25,8 @@ export default class Room extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.hostName = "https://firefy-back.herokuapp.com"
-    // this.hostName = "http://localhost:2000"
+    // this.hostName = "https://firefy-back.herokuapp.com"
+    this.hostName = "http://localhost:2000"
     this.roomName = "/room/"+ this.props.roomId
     
     this.href = window.location.href
@@ -58,7 +58,7 @@ export default class Room extends Component {
   }
 
   componentDidMount(){
-    let user = JSON.parse(localStorage.getItem("@user-info")).user
+    let user = JSON.parse(localStorage.getItem("@user-info"))
     if(user.username)
       this.socket = io.connect(this.hostName + this.roomName, {query: 'username='+user.username})
     else {
@@ -111,7 +111,7 @@ export default class Room extends Component {
   }
 
   initializeName = () =>{
-    const {username, chatname} = JSON.parse(localStorage.getItem("@user-info")).user
+    const {username, chatname} = JSON.parse(localStorage.getItem("@user-info"))
 
     if(chatname)
       this.changeName(chatname)
