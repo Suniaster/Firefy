@@ -1,9 +1,9 @@
-$background: #292A3E;
+@import "./Colors.scss";
 $backgroundDarker: rgb(35, 36, 53);
 
 .room-modal-background{
-    background-color: $background;
-    border-color: $background;
+    background-color: $modalBackground-color;
+    border-color: $modalBackground-color;
 }
 
 .room-modal-header{
