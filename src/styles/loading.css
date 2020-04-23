@@ -16,6 +16,7 @@
 @keyframes adwdwa{
     from {
         width: 100%;
+        opacity: 0.1;
     }
     to {
         width: 95%;
