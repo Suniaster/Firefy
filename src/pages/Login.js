@@ -70,8 +70,8 @@ class Login extends Component {
                         onFailure={()=>{}}
                     />
                     </div>
-                    <div className="ellipse"></div>
                 </div>
+                <div className="ellipse"></div>
             </div>
         )
     }

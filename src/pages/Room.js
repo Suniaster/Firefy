@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import Header from '../components/Header'
 
-import '../styles/roomtest.css'
+import '../styles/room.css'
 
 import io from 'socket.io-client'
 import Chat from '../components/Chat';
@@ -159,7 +159,7 @@ export default class Room extends Component {
                 /> 
               )}
             </div>
-            <div>
+            <div style={{height: "100%"}}>
                 {(socket!== undefined) && (
                   <UserContainer socket={socket}/>
                 )}

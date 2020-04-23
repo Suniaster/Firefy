@@ -1,10 +1,9 @@
-body{
-    overflow: hidden;
-}
 .page-container{
     background-color: #1E1F35;
     overflow: hidden;
     height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .header{
@@ -42,28 +41,36 @@ body{
 
 .login-body{
     display: flex;
-    height: 100%;
+    height: calc( 100% - 30vh );
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .companyLogin{
-    margin-top: 3rem;
-    width:7rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2rem;
+}
+
+.companyLogin img {
+    width: 4.5rem;
+    margin-bottom: 1rem;
+}
+
+.companyLogin svg {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
 .companyLogin span{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
-.form-container{
+.form-container {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 
@@ -76,9 +83,9 @@ body{
     align-self: center;
     background: #171827;
     width: 18rem;
-    min-height: 35px;
+    min-height: 45px;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0 1rem 0 20px;
     color: rgb(155, 157, 161);
     border: 0;
@@ -86,13 +93,14 @@ body{
     display: inline-block;
     align-items: center;
     box-sizing: border-box;
+    border: 2px solid #2C2D49;
 }
 
 .buttonContainer button{
     width: 10rem;
     background: #9FA9FF;
     color: #0E0F20;
-    margin: 1rem 15px 0.5rem 15px;
+    margin: 0.5rem 15px 0.5rem 15px;
 }
 
 .login-button:hover{
@@ -106,7 +114,6 @@ body{
     background: #1E1F35;
     border-radius: 5px;
     text-align: center;
-    margin-right: 15px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -115,10 +122,10 @@ body{
     color: #9FA9FF;
 }
 .ellipse{
-    position: absolute;
+    position: relative;
+    bottom: -8vh;
     width: 110vw;
     left: -5vw;
-    bottom: -35vh;
     height: 50vh;
     border-radius: 50%;
     background: linear-gradient(180deg, 
