@@ -58,6 +58,9 @@ class Login extends Component {
                          className="form-input"
                          placeholder="Password"
                         />
+                        <div className="forgotPassword">
+                            <span>Forgot password?</span>
+                        </div>
                     </div>
 
                     <div className="buttonContainer">
@@ -67,18 +70,15 @@ class Login extends Component {
                         >
                         Log in
                         </button>
-
                         <button
+                        style={{marginBottom: '2rem'}}
                         className="login-button"
                         onClick={this._anonymousLogin}
                         >
-                        Enter as anonymous
+                        Anonymous
                         </button>
                     </div>
 
-                    <div className="forgotPassword">
-                        <span>Forgot password?</span>
-                    </div>
                     <div>
                     <GoogleLogin
                         clientId="388056154502-gorkj09682qam2losvcr3psmh7v7mjm6.apps.googleusercontent.com"

@@ -98,6 +98,8 @@
 
 .buttonContainer{
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -105,7 +107,7 @@
     width: 10rem;
     background: #9FA9FF;
     color: #0E0F20;
-    margin: 0.5rem 15px 0.5rem 15px;
+    margin: 0.5rem 0 0.5rem 0;
 }
 
 .login-button:hover{
@@ -123,9 +125,18 @@
 }
 
 .forgotPassword{
-    margin-bottom: 2rem;
-    color: #9FA9FF;
+    width: 100%;
+    color: #6C72AD;
+    text-align: right;
+    margin-top: 0px;
+    text-align: right;
 }
+
+.forgotPassword:hover {
+    color: #9FA9FF;
+    cursor: pointer;
+}
+
 .ellipse{
     position: relative;
     bottom: -8vh;
