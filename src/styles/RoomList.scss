@@ -1,3 +1,5 @@
+@import 'Colors.scss';
+
 $header-height: 50px;
 $distance: 4vw;
 $border-radius: 5px;
@@ -50,7 +52,7 @@ $item-number: 4;
     }
 }
 
-.item {
+.table-item {
     width: 100%/$item-number;
     display: flex;
     align-items: center;
@@ -61,7 +63,7 @@ $item-number: 4;
     margin-right: 5px;
 }
 
-.card {
+.firefy-filter-card {
     border-radius: $border-radius;
     background: #1E1F35;
     width: 100%;
@@ -73,13 +75,14 @@ $item-number: 4;
     box-shadow: $shadow-box-default;
 }
 
-.card-name {
+.firefy-card-name {
     font-size: 1rem;
     color: #9FA9FF;
     text-align: center;
 }
 
 .button-container input {
+    color: #D4DCE8;
     appearance: none;
     background: #171827;
     border: 1px solid #2C2D49;
@@ -110,13 +113,36 @@ label {
 //     color: #D4DCE8;
 // }
 
-.checkbox-container{
-    border-radius: $border-radius;
-    background: #171827;
-    border: 1px solid #2C2D49;
-    height: 30px;
+.firefy-checkbox-container{
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.firefy-checkbox-wrapper{
+    display: flex;
+    align-items: center;
     justify-content: center;
+    margin-right: 15px;
+}
+
+.firefy-checkbox-container .firefy-checkbox-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.firefy-checkbox-container .firefy-checkbox-wrapper input[type="checkbox"] + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2C2D49;
+    background: #171827;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.firefy-checkbox-container .firefy-checkbox-wrapper input[type="checkbox"]:checked + label:after {
+    font-family: 'Arial', sans-serif;
+    content: "\2713";
+    font-size: 1.2em;
 }
