@@ -46,17 +46,17 @@ class ListRooms extends Component{
             return (
                 <button className="room-list" 
                     onClick={()=>this._handleRoomClick(roomId, isPrivate)}>
-                    <div className="item">
+                    <div className="table-item">
                         {roomId}
                     </div>
-                    <div className="item">
-                        {(host == "No Host") ? (<div className="host-text">{host}</div>) : ({host})
+                    <div className="table-item">
+                        {(host == "No Host") ? (<div className="host-text">{host}</div>) : (host)
                         }
                     </div>
-                    <div className="item">
+                    <div className="table-item">
                         {userCount}/{maxCapacity}
                     </div>
-                    <div className="item">
+                    <div className="table-item">
                         {isPrivate ?
                             (<div className="icon">
                                 <FaLock />
@@ -71,10 +71,10 @@ class ListRooms extends Component{
         return (
             <div className="rooms-container">
                 <div className="table-head">
-                    <div className="item">Room name</div>
-                    <div className="item">Owner</div>
-                    <div className="item"><FaUsers /></div>
-                    <div className="item">Private</div>
+                    <div className="table-item">Room name</div>
+                    <div className="table-item">Owner</div>
+                    <div className="table-item"><FaUsers /></div>
+                    <div className="table-item">Private</div>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <div className="separator" />
