@@ -62,6 +62,19 @@ class RoomIndex extends Component{
                                     Hide private
                                 </label>
                             </div>
+                            
+                            <div className="firefy-checkbox-container">
+                                <div className="firefy-checkbox-wrapper">
+                                    <input
+                                    type='checkbox'
+                                    id="checkbox2"
+                                    />
+                                    <label for="checkbox2"></label>
+                                </div>
+                                <label>
+                                    Hide private
+                                </label>
+                            </div>
 
                         </div>
                     </div>    
