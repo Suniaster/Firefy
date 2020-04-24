@@ -1,3 +1,5 @@
+@import './Colors.scss';
+@import './Modal.scss';
 .main-container{
     display: flex;
     flex-direction: column;
@@ -23,6 +25,11 @@
 
     padding-left: 3px;
     padding-right: 10px;
+    background-color: $color-form-input-background;
+}
+
+.room-list :hover{
+    background-color: $backgroundDarker;
 }
 .icon{
     margin-right: 5px;
@@ -32,4 +39,8 @@
     margin-right: 10px;
     display: flex;
     flex-direction: row;
+}
+
+.host-text{
+    color: $color-form-iput-placeholder;
 }
