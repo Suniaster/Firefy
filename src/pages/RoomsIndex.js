@@ -7,7 +7,7 @@ import RoomList from '../components/RoomList';
 import Header from '../components/Header'
 
 import '../styles/RoomIndex.scss'
-import CreateNewRoomModal from '../components/CreateNewRoomModal';
+import CreateNewRoomModal from '../components/RoomIndex/CreateNewRoomModal';
 
 class RoomIndex extends Component{
 
