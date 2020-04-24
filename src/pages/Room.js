@@ -31,6 +31,8 @@ export default class Room extends Component {
     
     this.href = window.location.href
     
+    this.user = this.props.user
+
     this.state = {
       socket: undefined,
       defaultPlayer: true,
@@ -59,8 +61,7 @@ export default class Room extends Component {
   }
 
   componentDidMount(){
-    let user = JSON.parse(localStorage.getItem("@user-info"))
-    this.setState({username: user.username})
+    let user = this.user
     if(user.username)
       this.socket = io.connect(this.hostName + this.roomName, {query: 'username='+user.username})
     else {
@@ -220,7 +221,7 @@ export default class Room extends Component {
               <button className="button-bigger-red"onClick={()=>this.openModal("newVideo")}>
                   Add video
               </button>
-              <button className="change-avatar">{this.state.username}</button>
+              <button className="change-avatar">{this.user.username}</button>
             </div>
           </div>
         </div>

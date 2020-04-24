@@ -20,7 +20,6 @@ class ListRooms extends Component{
     componentDidMount(){
         api.get('/rooms').then((res)=>{
             let rooms = res.data
-            console.log(rooms)
             this.setState({rooms: rooms})
         })
     }
@@ -44,7 +43,6 @@ class ListRooms extends Component{
     render(){
         const rooms = this.state.rooms.map((props)=>{
             const {roomId, userCount, maxCapacity, host, isPrivate} = props
-            console.log(props)
             return (
                 <button className="room-list" 
                     onClick={()=>this._handleRoomClick(roomId, isPrivate)}>

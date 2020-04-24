@@ -27,6 +27,9 @@ export default class LoadRoom extends Component{
             params:{
                 id: this.roomId,
                 password: localStorage.getItem("@room-lastpassword")
+            },
+            headers:{
+                'x-access-token': localStorage.getItem("@user-auth-token")
             }
         }).then((res)=>{
             this.setState({load: 'authorized', roomInfo: res.data})
