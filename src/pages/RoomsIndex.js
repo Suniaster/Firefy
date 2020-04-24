@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { Button, Form } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
 
 import { FaRedoAlt } from 'react-icons/fa'
@@ -40,8 +39,8 @@ class RoomIndex extends Component{
                             <FaRedoAlt />
                             Refresh
                         </div>
-                        <div className="card">
-                            <div className="card-name">Filters</div>
+                        <div className="firefy-filter-card">
+                            <div className="firefy-card-name">Filters</div>
                             <input id="search" placeholder="Search..."/>
                             {/* <label className="checkbox-container">
                                 <input type="checkbox" />
@@ -51,16 +50,19 @@ class RoomIndex extends Component{
                                 <input type="checkbox" />
                                 Hide private
                             </label> */}
-                            <Form.Check 
-                                type="switch"
-                                id="checkbox-container"
-                                label="Hide full"
-                            />
-                            <Form.Check 
-                                type="switch"
-                                id="checkbox-container"
-                                label="Hide private"
-                            />
+                            <div className="firefy-checkbox-container">
+                                <div className="firefy-checkbox-wrapper">
+                                    <input
+                                    type='checkbox'
+                                    id="checkbox1"
+                                    />
+                                    <label for="checkbox1"></label>
+                                </div>
+                                <label>
+                                    Hide private
+                                </label>
+                            </div>
+
                         </div>
                     </div>    
                     <div className="table-container">
