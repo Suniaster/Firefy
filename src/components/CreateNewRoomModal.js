@@ -19,7 +19,7 @@ class CreateNewRoomModal extends Component{
     createRoom = (roomName, isPrivate, password)=> {
         if(!roomName) roomName = undefined;
 
-        api.post('/room/create', {roomName, private: isPrivate, password: password}).then(res =>{
+        api.post('/room/create', {roomName, isPrivate: isPrivate, password: password}).then(res =>{
             this.props.history.push('/room/'+ res.data.roomid)
         }).catch((err)=>{
             alert("Choose other name for your room")
