@@ -23,7 +23,12 @@ export default class LoadRoom extends Component{
 
     componentDidMount(){
         this.setState({load: 'loading'})
-        api.get('/room/enter/'+this.roomId).then((res)=>{
+        api.get('/room/enter/', {
+            params:{
+                id: this.roomId,
+                password: localStorage.getItem("@room-lastpassword")
+            }
+        }).then((res)=>{
             this.setState({load: 'authorized', roomInfo: res.data})
         }).catch((err)=>{
             const { message } = err.response.data
