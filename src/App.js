@@ -14,6 +14,7 @@ import RoomIndex from './pages/RoomsIndex';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import {ProtectedUserRoute} from './utils/UserLoggedOnly';
+import Logout from './pages/Logout';
 
 export default function App() {
 
@@ -43,6 +44,12 @@ export default function App() {
       <Route exact path="/teste">
         <RoomTest />
       </Route>
+
+      <Route exact path="/logout">
+        <Logout />
+      </Route>
+
+
       <Route path="*">
         <PageDontExist />
       </Route>
