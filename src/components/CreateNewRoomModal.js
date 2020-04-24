@@ -20,6 +20,7 @@ class CreateNewRoomModal extends Component{
         if(!roomName) roomName = undefined;
 
         api.post('/room/create', {roomName, isPrivate: isPrivate, password: password}).then(res =>{
+            localStorage.setItem("@room-lastpassword", password)
             this.props.history.push('/room/'+ res.data.roomid)
         }).catch((err)=>{
             alert("Choose other name for your room")
@@ -63,7 +64,7 @@ class CreateNewRoomModal extends Component{
                                     }}
                                     checked={isPrivate}
                                     type="checkbox" 
-                                    label="Check me out" 
+                                    label="Private" 
                                 />
                             </Form.Group>
                             {isPrivate && (
