@@ -1,0 +1,16 @@
+@import './Colors.scss';
+
+.firefy-form-input{
+    background-color: $color-form-input-background;
+    color: $color-form-input-text;
+    border-color: $color-form-input-background;
+}
+
+.firefy-form-input:focus{
+    background-color: $color-form-input-background;
+    border-color: $color-form-input-background;
+}
+
+.firefy-form-input::placeholder{
+    color: $color-form-iput-placeholder;
+}
