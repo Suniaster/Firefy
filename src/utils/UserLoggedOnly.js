@@ -8,18 +8,21 @@ import {  CSSTransition, SwitchTransition } from "react-transition-group";
 
 export class ProtectedUserRoute extends Component{
 
-    constructor({component, ...rest}){
-        super({component, rest: rest});
+    constructor(props){
+        super(props);
+        const {component, ...rest} = this.props
+        this.rest = rest
     }
     render(){
         return (
             <Route
-                {...this.props.rest}
+                {...this.rest}
                 render={(props)=> <UserLoggedOnly {...props} component={this.props.component} />}
             />
         )
     }
 }
+
 
 export default class UserLoggedOnly extends Component{
     constructor(props){
