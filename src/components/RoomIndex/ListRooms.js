@@ -5,7 +5,7 @@ import '../../styles/rooms.scss'
 import { Link, withRouter } from 'react-router-dom'
 import {Modal, Form, Button} from 'react-bootstrap'
 
-import { FaUser, FaLock } from 'react-icons/fa'
+import { FaLockOpen, FaLock, FaUsers } from 'react-icons/fa'
 
 class ListRooms extends Component{
 
@@ -46,30 +46,39 @@ class ListRooms extends Component{
             return (
                 <button className="room-list" 
                     onClick={()=>this._handleRoomClick(roomId, isPrivate)}>
-                    <div className="icon-container">
-                        <div className="icon">
-                            <FaUser />
-                        </div>
-                        {isPrivate && (
-                            <div className="icon">
-                                <FaLock />
-                            </div>
-                        )}
-                        <div>
-                            {userCount}/{maxCapacity}
-                        </div>
+                    <div className="item">
+                        {roomId}
                     </div>
-                    <div>
-                        <div>{roomId}</div>
-                        <div className="host-text">Host: {host}</div>
+                    <div className="item">
+                        {(host == "No Host") ? (<div className="host-text">{host}</div>) : ({host})
+                        }
+                    </div>
+                    <div className="item">
+                        {userCount}/{maxCapacity}
+                    </div>
+                    <div className="item">
+                        {isPrivate ?
+                            (<div className="icon">
+                                <FaLock />
+                            </div>) : 
+                            (<div className="icon">
+                                <FaLockOpen />
+                            </div>)}
                     </div>
                 </button>
-    
             )
         })
         return (
             <div className="rooms-container">
-                <h1 style={{textAlign:"center", marginTop: "30px"}}> Salas: </h1>
+                <div className="table-head">
+                    <div className="item">Room name</div>
+                    <div className="item">Owner</div>
+                    <div className="item"><FaUsers /></div>
+                    <div className="item">Private</div>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div className="separator" />
+                </div>
                 {rooms}
             
             <Modal 

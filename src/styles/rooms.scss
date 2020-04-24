@@ -1,44 +1,59 @@
 @import './Colors.scss';
 @import './Modal.scss';
+@import './RoomList.scss';
 .main-container{
     display: flex;
     flex-direction: column;
+}
 
+.table-head {
+    color: #9FA9FF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2em;
+}
 
+.table-head svg {
+    height: 1.2em;
 }
 
 .rooms-container{
+    width: 100%;
+    height: 100%;
+}
 
+.separator {
+    margin: $distance/2 0 $distance/2 0;
+    height: 2px;
+    width: 75%;
+    background-color: rgba(159, 169, 255, 0.23);
 }
 
 .room-list{
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    // padding: 0 $distance/4 0 $distance/4;
     
     height: 3rem;
-    border-radius: 10px;
+    width: 100%;
 
-    border: 1px solid rgb(255, 255, 255);
+    border-radius: $border-radius;
 
-    margin-top: 20px;
     margin-bottom: 20px;
 
-    padding-left: 3px;
-    padding-right: 10px;
     background-color: $color-form-input-background;
 }
 
-.room-list :hover{
-    background-color: $backgroundDarker;
+.room-list:hover{
+    background-color: #050722;
+    transition: 0.2s ease;
 }
 .icon{
     margin-right: 5px;
-}
-.icon-container{
-    margin-left: 3px;
-    margin-right: 10px;
-    display: flex;
-    flex-direction: row;
 }
 
 .host-text{
