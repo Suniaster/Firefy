@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Modal, Form, Button} from 'react-bootstrap'
-import '../styles/Form.scss'
-import '../styles/Modal.scss'
+import '../../styles/Form.scss'
+import '../../styles/Modal.scss'
 import api from '../../services/api'
 import { withRouter } from 'react-router-dom'
 
