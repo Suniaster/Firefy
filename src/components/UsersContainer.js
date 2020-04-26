@@ -67,6 +67,9 @@ export default class UserContainer extends Component{
                 }
             }
             let border_color = user.role === "Owner" ? '#EAB100' : '#D4DCE8';
+
+            if(!user.icon_url) user.icon_url = 'https://pngimage.net/wp-content/uploads/2018/05/default-profile-pic-png-8.png'
+
             return (
                 <OverlayTrigger
                 trigger={["click"]}
