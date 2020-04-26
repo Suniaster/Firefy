@@ -25,11 +25,7 @@ export default class UserContainer extends Component{
         this.socket.on("getUsersInfo", (usersInfo)=>{
             let newList = this.state.users
             usersInfo.forEach((user)=>{
-                newList[user.id] = {
-                    id: user.id,
-                    name: user.name,
-                    role: user.role
-                }
+                newList[user.id] = user
             })
             this.setState({users: newList})
         })
@@ -50,11 +46,7 @@ export default class UserContainer extends Component{
 
     updateUser(userInfo){
         let newList = this.state.users
-        newList[userInfo.id] = {
-            id: userInfo.id,
-            name: userInfo.name,
-            role: userInfo.role
-        }
+        newList[userInfo.id] = userInfo
         this.setState({users: newList})
     }
 
@@ -92,7 +84,7 @@ export default class UserContainer extends Component{
                 }>
                     <div className="user-wrapper" style={{ pointerEvents: 'auto' }}> {/*none para desabilitar*/}
                         <div className="avatar-wrapper" style={{borderColor: border_color}}>
-                            <img src={img} alt="user"></img>
+                            <img src={user.icon_url} alt="user"></img>
                         </div>
                         <span>{user.name}</span>
                     </div>

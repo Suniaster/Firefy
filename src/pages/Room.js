@@ -62,8 +62,8 @@ export default class Room extends Component {
 
   componentDidMount(){
     let user = this.user
-    if(user.username)
-      this.socket = io.connect(this.hostName + this.roomName, {query: 'username='+user.username})
+    if(user.email)
+      this.socket = io.connect(this.hostName + this.roomName, {query: 'email='+user.email})
     else {
       this.socket = io.connect(this.hostName + this.roomName)
     }
