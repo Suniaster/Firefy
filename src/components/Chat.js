@@ -1,5 +1,5 @@
 import React, {  Component} from 'react'
-import '../styles/room.css'
+import '../styles/room.scss'
 import '../styles/chat.css'
 export default class Chat extends Component{
 

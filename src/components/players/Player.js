@@ -1,6 +1,6 @@
 import React from "react"
 import ReactPlayer from 'react-player'
-import '../../styles/room.css'
+import '../../styles/room.scss'
 import PlayerBase from "../../utils/PlayerBase"
 
 

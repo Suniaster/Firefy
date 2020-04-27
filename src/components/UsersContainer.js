@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Crow from '../assets/images/crown.png'
 import Chapeu from '../assets/images/chapeu.png'
 import Sasuke from '../assets/images/sasuke2fofo.jpg'
-import '../styles/room.css'
+import '../styles/room.scss'
 
 import {Button, Popover, OverlayTrigger} from 'react-bootstrap'
 

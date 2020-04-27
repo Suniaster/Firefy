@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
 
-import "../styles/room.css";
+import "../styles/room.scss";
 
 // import AdSense from 'react-adsense';
 
