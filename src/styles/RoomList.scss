@@ -93,7 +93,7 @@ $item-number: 4;
     box-sizing: border-box;
     border-radius: 10px;
     width:100%;
-    height: 40px;
+    min-height: 2.5rem;
     padding: 0 10px 0 10px;
     &::placeholder{
         font-style: italic;
@@ -136,9 +136,8 @@ label {
     justify-content: center;
     border: 1px solid #2C2D49;
     background: #171827;
-    width: 30px;
-    height: 30px;
-    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .firefy-checkbox-container .firefy-checkbox-wrapper input[type="checkbox"]:checked + label:after {
