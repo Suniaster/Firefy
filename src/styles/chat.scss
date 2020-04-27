@@ -54,3 +54,11 @@
     display: block;
     color: rgb(231, 231, 231); 
 }
+
+@import "./room.scss";
+
+@media (min-width: 360px) and (max-width: $bp-phone-width){
+    .chat-container{
+        height: 30vh;
+    }
+}
