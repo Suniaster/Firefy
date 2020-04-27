@@ -1,6 +1,6 @@
 import React, {  Component} from 'react'
 import '../styles/room.scss'
-import '../styles/chat.css'
+import '../styles/chat.scss'
 export default class Chat extends Component{
 
     constructor({roomName, hostName, socket}){
