@@ -163,7 +163,7 @@
 
 
 $bp-phone-width: 420px;
-@media (min-width: 360px) and (max-width: $bp-phone-width){
+@media (min-width: 320px) and (max-width: 420px){
     .room-container{
         // display: none;
     }
@@ -200,7 +200,7 @@ $bp-phone-width: 420px;
     }
 }
 
-@media (min-width: 630px) and (max-width: 740px){
+@media (min-width: 550px) and (max-width: 850px){
     .room-container{
         // display: none;
     }

@@ -56,7 +56,6 @@ export default class UserContainer extends Component{
             let user = this.state.users[userId];
             let border_color = (user.role === "Owner") ? '#ffea00' : '#D4DCE8';
             border_color = (user.role === "Moderator") ? '#04fc00' : border_color;
-            console.log(border_color)
             if(!user.icon_url) user.icon_url = 'https://pngimage.net/wp-content/uploads/2018/05/default-profile-pic-png-8.png'
 
             return (
