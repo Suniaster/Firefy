@@ -32,7 +32,8 @@ export default class LoadRoom extends Component{
                 'x-access-token': localStorage.getItem("@user-auth-token")
             }
         }).then((res)=>{
-            this.setState({load: 'authorized', roomInfo: res.data})
+            this.setState({roomInfo: res.data})
+            this.setState({load: 'authorized'})
         }).catch((err)=>{
             const { message } = err.response.data
             this.setState({

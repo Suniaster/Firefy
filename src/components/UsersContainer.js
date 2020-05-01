@@ -54,20 +54,9 @@ export default class UserContainer extends Component{
     render(){
         let listOfUsers = Object.keys(this.state.users).map((userId)=>{
             let user = this.state.users[userId];
-            let img;
-            if(user.role === "Watcher"){
-                img = Sasuke;
-            }
-            else{
-                if(user.role === "Moderator"){
-                    img = Chapeu;
-                }
-                else{
-                    img = Crow
-                }
-            }
-            let border_color = user.role === "Owner" ? '#EAB100' : '#D4DCE8';
-
+            let border_color = (user.role === "Owner") ? '#ffea00' : '#D4DCE8';
+            border_color = (user.role === "Moderator") ? '#04fc00' : border_color;
+            console.log(border_color)
             if(!user.icon_url) user.icon_url = 'https://pngimage.net/wp-content/uploads/2018/05/default-profile-pic-png-8.png'
 
             return (
