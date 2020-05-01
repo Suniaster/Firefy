@@ -13,6 +13,7 @@ import UserContainer from '../components/UsersContainer';
 // import AdSense from 'react-adsense';
 
 import Clipboard from 'react-clipboard.js'
+import api from '../services/api';
 
 export default class Room extends Component {
   acceptedLagTime = 1
@@ -70,10 +71,13 @@ export default class Room extends Component {
     this.socket.on('sync', this.__syncPlayer)
     this.socket.on('getOwnerInfo', this.__getOwnerInfo)
     this.socket.emit("syncMe")
+
+    this.pingpongTimer = setInterval(()=>api.get("/ping"), 2*60*1000);
   }
 
   componentWillUnmount(){
     this.socket.close();
+    clearInterval(this.pingpongTimer)
   }
 
   __syncPlayer = (videoInfo) =>{
