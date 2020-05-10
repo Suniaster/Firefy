@@ -30,6 +30,10 @@ class RoomIndex extends Component{
         this.setState({modals: {[modalName]: newState}})
     }
 
+    refresh = () => {
+        if(this.roomsComponentRef)
+        this.roomsComponentRef.updateRooms()
+    }
     render = () =>{
         return(
             <Header>
@@ -38,7 +42,7 @@ class RoomIndex extends Component{
                         <div className="menu-button" onClick={()=>this.changeModal('createRoom', true)}>
                             <b>Create New Room</b>
                         </div>
-                        <div className="menu-button">
+                        <div className="menu-button" onClick={this.refresh}>
                             <FaRedoAlt />
                             Refresh
                         </div>
@@ -92,7 +96,8 @@ class RoomIndex extends Component{
                         <ListRooms 
                             q={this.state.roomSearch}
                             hidePrivate={this.state.hidePrivate}
-                            hidePublic={this.state.hidePublic}    
+                            hidePublic={this.state.hidePublic} 
+                            instance={ref => this.roomsComponentRef = ref}   
                         />
                     </div>
                 </div>

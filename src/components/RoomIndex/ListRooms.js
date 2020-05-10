@@ -17,7 +17,19 @@ class ListRooms extends Component{
 
     selectedId = ''
 
+    constructor(props){
+        super(props)
+
+        if(this.props.instance){
+            props.instance(this)
+        }
+    }
+
     componentDidMount(){
+        this.updateRooms()
+    }
+
+    updateRooms(){
         api.get('/rooms').then((res)=>{
             let rooms = res.data
             this.setState({rooms: rooms})
