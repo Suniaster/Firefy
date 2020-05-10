@@ -5,6 +5,7 @@ import Loading from '../components/Loading'
 
 import '../styles/FadeSwitch.css'
 import {  CSSTransition, SwitchTransition } from "react-transition-group";
+import ErrorMessage from './ErrorMessage'
 
 
 export default class LoadRoom extends Component{
@@ -69,7 +70,7 @@ export default class LoadRoom extends Component{
                             <Room {...this.state.roomInfo}/>
                         ))}
                         {((load === 'problem') &&(
-                            <h1 style={{color: "white"}}>{errorMessage}</h1>
+                            <ErrorMessage message={errorMessage}></ErrorMessage>
                         ))}
                     </div>
                     </CSSTransition>
