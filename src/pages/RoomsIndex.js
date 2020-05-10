@@ -18,7 +18,10 @@ class RoomIndex extends Component{
         this.state = {
             modals:{
                 createRoom: false
-            }
+            },
+            roomSearch: '',
+            hidePrivate: false,
+            hidePublic: false
         }
     }
 
@@ -41,7 +44,11 @@ class RoomIndex extends Component{
                         </div>
                         <div className="firefy-filter-card">
                             <div className="firefy-card-name">Filters</div>
-                            <input id="search" placeholder="Search..."/>
+                            <input 
+                                id="search" 
+                                placeholder="Search..." 
+                                onChange={(e)=>this.setState({roomSearch: e.target.value})}
+                            />
                             {/* <label className="checkbox-container">
                                 <input type="checkbox" />
                                 Hide full
@@ -56,10 +63,13 @@ class RoomIndex extends Component{
                                     type='checkbox'
                                     id="checkbox1"
                                     />
-                                    <label for="checkbox1"></label>
+                                    <label 
+                                        for="checkbox1"
+                                        onClick={()=> this.setState({hidePublic: !this.state.hidePublic})}
+                                        ></label>
                                 </div>
                                 <label>
-                                    Hide private
+                                    Hide Public
                                 </label>
                             </div>
                             
@@ -69,7 +79,7 @@ class RoomIndex extends Component{
                                     type='checkbox'
                                     id="checkbox2"
                                     />
-                                    <label for="checkbox2"></label>
+                                    <label for="checkbox2" onClick={()=> this.setState({hidePrivate: !this.state.hidePrivate})}></label>
                                 </div>
                                 <label>
                                     Hide private
@@ -79,7 +89,11 @@ class RoomIndex extends Component{
                         </div>
                     </div>    
                     <div className="table-container">
-                        <ListRooms />
+                        <ListRooms 
+                            q={this.state.roomSearch}
+                            hidePrivate={this.state.hidePrivate}
+                            hidePublic={this.state.hidePublic}    
+                        />
                     </div>
                 </div>
            

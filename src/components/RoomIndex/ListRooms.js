@@ -41,9 +41,10 @@ class ListRooms extends Component{
     }
 
     render(){
-        const rooms = this.state.rooms.map((props)=>{
+        const rooms = this.state.rooms.reduce((acc, props)=>{
             const {roomId, userCount, maxCapacity, host, isPrivate, roomName} = props
-            return (
+            
+            let item = (
                 <button className="room-list" 
                     onClick={()=>this._handleRoomClick(roomId, isPrivate)}>
                     <div className="table-item">
@@ -67,7 +68,21 @@ class ListRooms extends Component{
                     </div>
                 </button>
             )
-        })
+            if(roomName.startsWith(this.props.q)){
+                if(isPrivate){
+                    if(!this.props.hidePrivate){
+                        acc.push(item)
+                    }
+                }
+                if(!isPrivate){
+                    if(!this.props.hidePublic){
+                        acc.push(item)
+                    }
+                }
+            }
+
+            return acc
+        }, [])
         return (
             <div className="rooms-container">
                 <div className="table-head">
