@@ -42,12 +42,12 @@ class ListRooms extends Component{
 
     render(){
         const rooms = this.state.rooms.map((props)=>{
-            const {roomId, userCount, maxCapacity, host, isPrivate} = props
+            const {roomId, userCount, maxCapacity, host, isPrivate, roomName} = props
             return (
                 <button className="room-list" 
                     onClick={()=>this._handleRoomClick(roomId, isPrivate)}>
                     <div className="table-item">
-                        {roomId}
+                        {roomName}
                     </div>
                     <div className="table-item">
                         {(host == "No Host") ? (<div className="host-text">{host}</div>) : (host)

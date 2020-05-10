@@ -28,7 +28,7 @@ export default class Room extends Component {
 
     this.hostName = "https://firefy-back.herokuapp.com"
     // this.hostName = "http://localhost:2000" 
-    this.roomName = "/room/"+ this.props.roomId
+    this.roomPath = "/room/"+ this.props.roomId
     
     this.href = window.location.href
     
@@ -63,7 +63,7 @@ export default class Room extends Component {
 
   componentDidMount(){
     let user = this.user
-    this.socket = io.connect(this.hostName + this.roomName, {query: {email:user.email, username: user.username}})
+    this.socket = io.connect(this.hostName + this.roomPath, {query: {email:user.email, username: user.username}})
     this.setState({
       socket: this.socket
     })
@@ -176,10 +176,9 @@ export default class Room extends Component {
           </div>
 
         <div className="control-container">
-          <div className="room-title-wrapper">Sala: {this.props.roomId}</div>
+          <div className="room-title-wrapper">Sala: {this.props.roomName}</div>
             {(socket!== undefined) && (
                 <Chat
-                  roomName={this.roomName}
                   hostName={this.hostName}
                   socket={socket}
                 />

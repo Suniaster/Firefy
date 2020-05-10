@@ -3,9 +3,8 @@ import '../styles/room.scss'
 import '../styles/chat.scss'
 export default class Chat extends Component{
 
-    constructor({roomName, hostName, socket}){
+    constructor({hostName, socket}){
         super()
-        this.roomName = roomName
         this.hostName = hostName
 
         this.state = {
